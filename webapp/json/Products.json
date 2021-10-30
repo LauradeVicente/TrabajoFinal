@@ -1,0 +1,58 @@
+{
+    "value": [{
+        "id": "001",
+        "name": "Harina de trigo",
+        "quantity": "5kg",
+        "branch": "Costco",
+        "units": "4",
+        "caducity": "20-10-2022"
+    },
+    {
+        "id": "002",
+        "name": "Boniato",
+        "quantity": "3kg",
+        "branch": "Costco",
+        "units": "3",
+        "caducity": "19-03-2022"
+    },
+    {
+        "id": "003",
+        "name": "Calabaza",
+        "quantity": "2kg",
+        "branch": "Frutería Hnos. Glez.",
+        "units": "5",
+        "caducity": "22-07-2022"
+    },
+    {
+        "id": "004",
+        "name": "Queso de vaca",
+        "quantity": "2kg",
+        "branch": "Costco",
+        "units": "4",
+        "caducity": "04-05-2022"
+    },
+    {
+        "id": "005",
+        "name": "Pan",
+        "quantity": "1kg",
+        "branch": "Panadería La Miga",
+        "units": "8",
+        "caducity": "01-01-2022"
+    },
+    {
+        "id": "006",
+        "name": "Cebolla",
+        "quantity": "1kg",
+        "branch": "Frutería Hnos. Glez.",
+        "units": "7",
+        "caducity": "08-12-2021"
+    },
+    {
+        "id": "007",
+        "name": "Pimienta molida",
+        "quantity": "0.5kg",
+        "branch": "Costco",
+        "units": "20",
+        "caducity": "16-11-2023"
+    }]
+}

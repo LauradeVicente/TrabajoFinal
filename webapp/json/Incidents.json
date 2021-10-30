@@ -1,0 +1,44 @@
+{
+    "value": [{
+        "id": "001",
+        "name": "Harina de trigo",
+        "description": "Valencia",
+        "images": "España"
+    },
+    {
+        "id": "002",
+        "name": "Boniato",
+        "description": "Gerona",
+        "images": "España"
+    },
+    {
+        "id": "003",
+        "name": "Calabaza",
+        "description": "Vigo",
+        "images": "España"
+    },
+    {
+        "id": "004",
+        "name": "Queso de vaca",
+        "description": "Madrid",
+        "images": "España"
+    },
+    {
+        "id": "005",
+        "name": "Pan",
+        "description": "Gijón",
+        "images": "España"
+    },
+    {
+        "id": "006",
+        "name": "Cebolla",
+        "description": "Londres",
+        "images": "Reino Unido"
+    },
+    {
+        "id": "007",
+        "name": "Pimienta molida",
+        "description": "Alabama",
+        "images": "Estados Unidos"
+    }]
+}
