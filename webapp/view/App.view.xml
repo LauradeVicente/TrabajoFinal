@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="restaurant.finalproject.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
+	xmlns:tnt="sap.tnt"
     displayBlock="true"
     xmlns="sap.m"
 >
@@ -8,6 +9,11 @@
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
+					<tnt:ToolHeader>
+						<SearchField placeholder="{i18n>productNameFilter}"
+									 width="40%"
+									 search="onFilterProductName"/>
+					</tnt:ToolHeader>
 					<Table id="idProductsTable"
 						   items="{products>/value}"
 						   class="sapUiResponsiveContentPadding">

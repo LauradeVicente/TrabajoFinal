@@ -49,6 +49,17 @@ sap.ui.define([
 			loadVendorsModel: async function () {
 				const oStoragesModel = this.getView().getModel("vendors");
 				await oStoragesModel.loadData("json/Vendors.json");
+			},
+
+			onFilterProductName: function (oEvent) {
+				var aFilter = [],
+				sQuery = oEvent.getParameter("query"),
+				oTable = this.getView().byId("idProductsTable"),
+				oBinding = oTable.getBinding("items");
+
+				if (sQuery) aFilter.push(new Filter("name", FilterOperator.Contains, sQuery));
+
+				oBinding.filter(aFilter);
 			}
 
 		});
