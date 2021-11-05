@@ -3,28 +3,40 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/model/FilterType"
+	"sap/ui/model/FilterType",
+	"restaurant/finalproject/util/Formatter",
+	"restaurant/finalproject/Router"
 ],
 	
 
-	function (Controller, JSONModel, Filter, FilterOperator, FilterType) {
+	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router) {
 		"use strict";
 
-		return Controller.extend("restaurant.finalproject.controller.App", {
+		return Router.extend("restaurant.finalproject.controller.App", {
 
 			onInit: async function () {
 				await this.initModels();
-				await this.loadModelsData();
+				await this.loadModels();
+				this.initRouter();
+			},
+
+			initRouter: function () {
+				const Router = this.getRouter();
+				if (Router._bIsInitialized) {
+					Router.navTo("Home");
+				} else {
+					Router.initialize();
+				}
 			},
 			
 			initModels: function () {
 				this.getView().setModel(new JSONModel(), "coldStorages");
 				this.getView().setModel(new JSONModel(), "incidents");
-				this.getView().setModel(new JSONModel(), "products");
+				this.getOwnerComponent().setModel(new JSONModel(), "products");
 				this.getView().setModel(new JSONModel(), "vendors");
 			},
 
-			loadModelsData: async function () {
+			loadModels: async function () {
 				await this.loadStoragesModel();
 				await this.loadIncidentsModel();
 				await this.loadProductsModel();
@@ -42,24 +54,13 @@ sap.ui.define([
 			},
 
 			loadProductsModel: async function () {
-				const oStoragesModel = this.getView().getModel("products");
+				const oStoragesModel = this.getOwnerComponent().getModel("products");
 				await oStoragesModel.loadData("json/Products.json");
 			},
 
 			loadVendorsModel: async function () {
 				const oStoragesModel = this.getView().getModel("vendors");
 				await oStoragesModel.loadData("json/Vendors.json");
-			},
-
-			onFilterProductName: function (oEvent) {
-				var aFilter = [],
-				sQuery = oEvent.getParameter("query"),
-				oTable = this.getView().byId("idProductsTable"),
-				oBinding = oTable.getBinding("items");
-
-				if (sQuery) aFilter.push(new Filter("name", FilterOperator.Contains, sQuery));
-
-				oBinding.filter(aFilter);
 			}
 
 		});

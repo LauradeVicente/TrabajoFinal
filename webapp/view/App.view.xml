@@ -1,53 +1,10 @@
 <mvc:View
     controllerName="restaurant.finalproject.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-	xmlns:tnt="sap.tnt"
     displayBlock="true"
     xmlns="sap.m"
 >
 	<Shell id="shell">
-		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>title}">
-					<tnt:ToolHeader>
-						<SearchField placeholder="{i18n>productNameFilter}"
-									 width="40%"
-									 search="onFilterProductName"/>
-					</tnt:ToolHeader>
-					<Table id="idProductsTable"
-						   items="{products>/value}"
-						   class="sapUiResponsiveContentPadding">
-						<columns>
-							<Column>
-								<Text text="{i18n>productName}"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>productQuantity}"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>productBranch}"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>productUnit}"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>productCaducity}"/>
-							</Column>
-						</columns>
-						<items>
-							<ColumnListItem>
-								<cells>
-									<Text text="{products>name}"/>
-									<Text text="{products>quantity}"/>
-									<Text text="{products>branch}"/>
-									<Text text="{products>units}"/>
-									<Text text="{products>caducity}"/>
-								</cells>
-							</ColumnListItem>
-						</items>
-					</Table>
-				</Page>
-			</pages>
-		</App>
+		<App id="app"/>
 	</Shell>
 </mvc:View>

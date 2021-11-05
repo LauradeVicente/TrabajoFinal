@@ -5,7 +5,8 @@
         "quantity": "5kg",
         "branch": "Costco",
         "units": "4",
-        "caducity": "20-10-2022"
+        "caducity": "2022-08-27T11:59:07Z",
+        "type": "Cereales"
     },
     {
         "id": "002",
@@ -13,7 +14,8 @@
         "quantity": "3kg",
         "branch": "Costco",
         "units": "3",
-        "caducity": "19-03-2022"
+        "caducity": "2021-02-01T11:59:07Z",
+        "type": "Verduras"
     },
     {
         "id": "003",
@@ -21,7 +23,8 @@
         "quantity": "2kg",
         "branch": "Frutería Hnos. Glez.",
         "units": "5",
-        "caducity": "22-07-2022"
+        "caducity": "2023-10-03T11:59:07Z",
+        "type": "Verduras"
     },
     {
         "id": "004",
@@ -29,7 +32,8 @@
         "quantity": "2kg",
         "branch": "Costco",
         "units": "4",
-        "caducity": "04-05-2022"
+        "caducity": "2022-09-12T11:59:07Z",
+        "type": "Lácteos y derivados"
     },
     {
         "id": "005",
@@ -37,7 +41,8 @@
         "quantity": "1kg",
         "branch": "Panadería La Miga",
         "units": "8",
-        "caducity": "01-01-2022"
+        "caducity": "2024-01-20T11:59:07Z",
+        "type": "Cereales"
     },
     {
         "id": "006",
@@ -45,7 +50,8 @@
         "quantity": "1kg",
         "branch": "Frutería Hnos. Glez.",
         "units": "7",
-        "caducity": "08-12-2021"
+        "caducity": "2023-05-22T11:59:07Z",
+        "type": "Verduras"
     },
     {
         "id": "007",
@@ -53,6 +59,34 @@
         "quantity": "0.5kg",
         "branch": "Costco",
         "units": "20",
-        "caducity": "16-11-2023"
+        "caducity": "2025-12-07T11:59:07Z",
+        "type": "Especias"
+    },
+    {
+        "id": "008",
+        "name": "Manzana golden",
+        "quantity": "5kg",
+        "branch": "Costco",
+        "units": "30",
+        "caducity": "2022-03-12T11:59:07Z",
+        "type": "Frutas"
+    },
+    {
+        "id": "009",
+        "name": "Lenteja pardina",
+        "quantity": "2kg",
+        "branch": "Costco",
+        "units": "500",
+        "caducity": "2025-05-01T11:59:07Z",
+        "type": "Legumbres"
+    },
+    {
+        "id": "010",
+        "name": "Arroz redondo",
+        "quantity": "5kg",
+        "branch": "Costco",
+        "units": "2000",
+        "caducity": "2026-11-05T11:59:07Z",
+        "type": "Cereales"
     }]
 }

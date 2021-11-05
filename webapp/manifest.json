@@ -77,18 +77,30 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
-          "pattern": "RouteApp",
-          "target": ["TargetApp"]
+          "name": "Home",
+          "pattern": "Home",
+          "target": ["Home"]
+        },
+        {
+          "name": "ProductList",
+          "pattern": "ProductList",
+          "target": ["ProductList"]
         }
       ],
       "targets": {
-        "TargetApp": {
+        "Home": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "App",
-          "viewName": "App"
+          "viewName": "Home",
+          "viewPath": "restaurant.finalproject.view"
+        },
+        "ProductList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewName": "ProductList",
+          "viewPath": "restaurant.finalproject.view"
         }
       }
     }
