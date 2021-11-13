@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    controllerName="restaurant.finalproject.controller.ProductList"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:cd="http://schemas.sap.com/sapui5/extensions/sap.ui.core.CustomData/1">
+        <Text icon="sap-icon://feeder-arrow"/>
+        <Text text="{i18n>productListMenu}" icon="sap-icon://icon-goods"/>
+        <Text text="{i18n>suppliersMenu}" icon="sap-icon://icon-review-supplies"/>
+</core:FragmentDefinition>

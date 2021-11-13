@@ -4,7 +4,7 @@
         "name": "Harina de trigo",
         "quantity": "5kg",
         "branch": "Costco",
-        "units": "4",
+        "price-kg": "0.5€/kg",
         "caducity": "2022-08-27T11:59:07Z",
         "type": "Cereales"
     },
@@ -13,7 +13,7 @@
         "name": "Boniato",
         "quantity": "3kg",
         "branch": "Costco",
-        "units": "3",
+        "price-kg": "1.2€/kg",
         "caducity": "2021-02-01T11:59:07Z",
         "type": "Verduras"
     },
@@ -22,7 +22,7 @@
         "name": "Calabaza",
         "quantity": "2kg",
         "branch": "Frutería Hnos. Glez.",
-        "units": "5",
+        "price-kg": "2.5€/kg",
         "caducity": "2023-10-03T11:59:07Z",
         "type": "Verduras"
     },
@@ -31,7 +31,7 @@
         "name": "Queso de vaca",
         "quantity": "2kg",
         "branch": "Costco",
-        "units": "4",
+        "price-kg": "8€/kg",
         "caducity": "2022-09-12T11:59:07Z",
         "type": "Lácteos y derivados"
     },
@@ -40,7 +40,7 @@
         "name": "Pan",
         "quantity": "1kg",
         "branch": "Panadería La Miga",
-        "units": "8",
+        "price-kg": "0.75€/kg",
         "caducity": "2024-01-20T11:59:07Z",
         "type": "Cereales"
     },
@@ -49,7 +49,7 @@
         "name": "Cebolla",
         "quantity": "1kg",
         "branch": "Frutería Hnos. Glez.",
-        "units": "7",
+        "price-kg": "1€/kg",
         "caducity": "2023-05-22T11:59:07Z",
         "type": "Verduras"
     },
@@ -58,7 +58,7 @@
         "name": "Pimienta molida",
         "quantity": "0.5kg",
         "branch": "Costco",
-        "units": "20",
+        "price-kg": "0.2€/kg",
         "caducity": "2025-12-07T11:59:07Z",
         "type": "Especias"
     },
@@ -67,7 +67,7 @@
         "name": "Manzana golden",
         "quantity": "5kg",
         "branch": "Costco",
-        "units": "30",
+        "price-kg": "2€/kg",
         "caducity": "2022-03-12T11:59:07Z",
         "type": "Frutas"
     },
@@ -76,7 +76,7 @@
         "name": "Lenteja pardina",
         "quantity": "2kg",
         "branch": "Costco",
-        "units": "500",
+        "price-kg": "1.3€/kg",
         "caducity": "2025-05-01T11:59:07Z",
         "type": "Legumbres"
     },
@@ -85,7 +85,7 @@
         "name": "Arroz redondo",
         "quantity": "5kg",
         "branch": "Costco",
-        "units": "2000",
+        "price-kg": "0.5€/kg",
         "caducity": "2026-11-05T11:59:07Z",
         "type": "Cereales"
     }]

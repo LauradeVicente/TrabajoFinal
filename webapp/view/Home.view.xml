@@ -4,9 +4,29 @@
     displayBlock="true"
     xmlns="sap.m"
 >
-	<Shell>
-		<App>
-          <Button text="Product List" press="navToProductList"/>
-        </App>
-	</Shell>
+
+  <App>
+    <Page title="{i18n>title}">
+      <content>
+        <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+          <items>
+            <Input id="uid" placeholder="{i18n>userInput}"></Input>
+            <Input id="pasw" placeholder="{i18n>passwordInput}" type="Password"></Input>
+            <Button width="12rem" text="{i18n>submitButton}" type="Emphasized" press="onLoginTap"></Button>
+          </items>
+        </VBox>
+      </content>
+      <footer >
+        <Bar>
+          <contentLeft>
+            <Text text="{i18n>footerTitle}"></Text>
+          </contentLeft>
+          <contentRight>
+            <Text text="{i18n>footerLogin}"></Text>
+          </contentRight>
+        </Bar>
+      </footer>
+    </Page>
+  </App>
+       
 </mvc:View>

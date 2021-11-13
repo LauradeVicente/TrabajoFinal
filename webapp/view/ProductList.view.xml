@@ -1,11 +1,12 @@
 <mvc:View
     controllerName="restaurant.finalproject.controller.ProductList"
+	xmlns:f="sap.f"
     xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
     xmlns:tnt="sap.tnt"
     displayBlock="true"
     xmlns="sap.m"
 >
-	<Shell>
 		<App>
             <pages>
 				<Page id="page" title="{i18n>title}">
@@ -13,6 +14,12 @@
 						<SearchField placeholder="{i18n>productNameFilter}"
 									 width="40%"
 									 search="onFilterProductName"/>
+						<MultiComboBox id="productsMCB"
+									width="40%"
+									selectionChange="onFilterProductType">
+										<core:ListItem key="" text=""/>
+						</MultiComboBox>
+						<Button text="{i18n>addProductButton}" press="handlePopoverAddProducts"/>
 					</tnt:ToolHeader>
 					<Table id="idProductsTable"
 						   items="{products>/value}"
@@ -28,7 +35,7 @@
 								<Text text="{i18n>productBranch}"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>productUnit}"/>
+								<Text text="{i18n>productPrice}"/>
 							</Column>
 							<Column>
 								<Text text="{i18n>productCaducity}"/>
@@ -43,15 +50,25 @@
 									<Text text="{products>name}"/>
 									<Text text="{products>quantity}"/>
 									<Text text="{products>branch}"/>
-									<Text text="{products>units}"/>
-									<Text text="{path: 'products>caducity'}"/>
+									<Text text="{products>price-kg}"/>
+									<Text text="{path: 'products>caducity', 
+										formatter: 'restaurant.finalproject.util.Formatter.setDate'}"/>
                                     <Text text="{products>type}"/>
 								</cells>
 							</ColumnListItem>
 						</items>
 					</Table>
+					<footer >
+        				<Bar>
+          					<contentLeft>
+            					<Text text="{i18n>footerTitle}"></Text>
+          					</contentLeft>
+          					<contentRight>
+            					<Text text="{i18n>footerProducts}"></Text>
+          					</contentRight>
+        				</Bar>
+      				</footer>
 				</Page>
 			</pages>
         </App>
-	</Shell>
 </mvc:View>

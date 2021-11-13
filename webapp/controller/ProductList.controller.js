@@ -5,11 +5,12 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/FilterType",
     "restaurant/finalproject/util/Formatter",
-	"restaurant/finalproject/Router"
+	"restaurant/finalproject/Router",
+	"restaurant/finalproject/util/Commons"
 ],
 	
 
-	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router) {
+	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router, Commons) {
 		"use strict";
 
 		return Controller.extend("restaurant.finalproject.controller.ProductList", {
@@ -35,6 +36,14 @@ sap.ui.define([
 				if (sQuery) aFilter.push(new Filter("name", FilterOperator.Contains, sQuery));
 
 				oBinding.filter(aFilter);
+			},
+
+			onFilterProductType: function() {
+
+			},
+
+			handlePopoverAddProducts: function () {
+
 			}
         });
 	});
