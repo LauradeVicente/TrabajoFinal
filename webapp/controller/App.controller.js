@@ -30,6 +30,7 @@ sap.ui.define([
 			},
 			
 			initModels: function () {
+				this.getOwnerComponent().setModel(new JSONModel(), "productTypes");
 				this.getOwnerComponent().setModel(new JSONModel(), "users");
 				this.getView().setModel(new JSONModel(), "coldStorages");
 				this.getView().setModel(new JSONModel(), "incidents");
@@ -38,11 +39,17 @@ sap.ui.define([
 			},
 
 			loadModels: async function () {
+				await this.loadProductTypesModel();
 				await this.loadUsersModel();
 				await this.loadStoragesModel();
 				await this.loadIncidentsModel();
 				await this.loadProductsModel();
 				await this.loadVendorsModel();
+			},
+
+			loadProductTypesModel: async function () {
+				const oProductTypesModel = this.getOwnerComponent().getModel("productTypes");
+				await oProductTypesModel.loadData("json/ProductTypes.json");
 			},
 
 			loadUsersModel: async function () {
@@ -61,13 +68,13 @@ sap.ui.define([
 			},
 
 			loadProductsModel: async function () {
-				const oStoragesModel = this.getOwnerComponent().getModel("products");
-				await oStoragesModel.loadData("json/Products.json");
+				const oProductsModel = this.getOwnerComponent().getModel("products");
+				await oProductsModel.loadData("json/Products.json");
 			},
 
 			loadVendorsModel: async function () {
-				const oStoragesModel = this.getView().getModel("vendors");
-				await oStoragesModel.loadData("json/Vendors.json");
+				const oVendorsModel = this.getView().getModel("vendors");
+				await oVendorsModel.loadData("json/Vendors.json");
 			}
 
 		});

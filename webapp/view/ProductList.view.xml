@@ -15,14 +15,17 @@
 									 width="40%"
 									 search="onFilterProductName"/>
 						<MultiComboBox id="productsMCB"
+									placeholder="{i18n>productTypeFilter}"
 									width="40%"
-									selectionChange="onFilterProductType">
-										<core:ListItem key="" text=""/>
+									selectionChange="onFilterProductType"
+									items="{path: 'productTypes>/'}">
+										<core:Item key="{productTypes>id}" text="{productTypes>type}"/>
 						</MultiComboBox>
-						<Button text="{i18n>addProductButton}" press="handlePopoverAddProducts"/>
+						<Button text="{i18n>addProductButton}" 
+								press="handlePopoverAddProducts"/>
 					</tnt:ToolHeader>
 					<Table id="idProductsTable"
-						   items="{products>/value}"
+						   items="{productsTemp>/value}"
 						   class="sapUiResponsiveContentPadding">
 						<columns>
 							<Column>
@@ -45,15 +48,15 @@
 							</Column>
 						</columns>
 						<items>
-							<ColumnListItem>
+							<ColumnListItem vAlign="Middle" type="Navigation" press="navToDetail">
 								<cells>
-									<Text text="{products>name}"/>
-									<Text text="{products>quantity}"/>
-									<Text text="{products>branch}"/>
-									<Text text="{products>price-kg}"/>
-									<Text text="{path: 'products>caducity', 
+									<Text text="{productsTemp>name}"/>
+									<Text text="{productsTemp>quantity}"/>
+									<Text text="{productsTemp>branch}"/>
+									<Text text="{productsTemp>price-kg}"/>
+									<Text text="{path: 'productsTemp>caducity', 
 										formatter: 'restaurant.finalproject.util.Formatter.setDate'}"/>
-                                    <Text text="{products>type}"/>
+                                    <Text text="{productsTemp>type}"/>
 								</cells>
 							</ColumnListItem>
 						</items>

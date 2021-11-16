@@ -6,11 +6,12 @@ sap.ui.define([
 	"sap/ui/model/FilterType",
     "restaurant/finalproject/util/Formatter",
 	"restaurant/finalproject/Router",
-	"sap/m/MessageToast"
+	"sap/m/MessageToast",
+	"sap/m/BusyIndicator"
 ],
 	
 
-	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router, MessageToast) {
+	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router, MessageToast, BusyIndicator) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.Home", {
@@ -20,13 +21,13 @@ sap.ui.define([
 			},
 
 			onLoginTap: function (oEvent) {
-				const userId = this.getView().byId("uid").getValue();
-				const passwd = this.getView().byId("pasw").getValue();
+				const sUserId = this.getView().byId("uid").getValue();
+				const sPassw = this.getView().byId("pasw").getValue();
 				const oUsersModel = this.getOwnerComponent().getModel("users");
 				const aModelData = oUsersModel.getProperty("/value");
-				if (!userId || !passwd) return MessageToast.show("Rellena ambos campos del formulario");
+				if (!sUserId || !sPassw) return MessageToast.show("Rellena ambos campos del formulario");
 				for (var i=0; i < aModelData.length; i++) {
-					if (aModelData[i].user_id === userId && aModelData[i].password === passwd) {
+					if (aModelData[i].user_id === sUserId && aModelData[i].password === sPassw) {
 						this.navToProductList();
 					} else {
 						MessageToast.show("Datos incorrectos.\nInténtalo de nuevo");

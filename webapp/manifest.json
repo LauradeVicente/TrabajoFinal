@@ -85,6 +85,11 @@
           "name": "ProductList",
           "pattern": "ProductList",
           "target": ["ProductList"]
+        },
+        {
+          "name": "ProductDetail",
+          "pattern": "ProductDetail",
+          "target": ["ProductDetail"]
         }
       ],
       "targets": {
@@ -100,6 +105,13 @@
           "transition": "slide",
           "clearControlAggregation": false,
           "viewName": "ProductList",
+          "viewPath": "restaurant.finalproject.view"
+        },
+        "ProductDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewName": "ProductDetail",
           "viewPath": "restaurant.finalproject.view"
         }
       }

@@ -1,0 +1,42 @@
+[
+    {
+        "id": "001",
+        "type": "Verduras"
+    },
+    {
+        "id": "002",
+        "type": "Frutas"
+    },
+    {
+        "id": "003",
+        "type": "Cereales"
+    },
+    {
+        "id": "004",
+        "type": "Lácteos y derivados"
+    },
+    {
+        "id": "005",
+        "type": "Legumbres"
+    },
+    {
+        "id": "006",
+        "type": "Especias"
+    },
+    {
+        "id": "007",
+        "type": "Conservas"
+    },
+    {
+        "id": "008",
+        "type": "Carne"
+    },
+    {
+        "id": "009",
+        "type": "Pescado"
+    },
+    {
+        "id": "010",
+        "type": "Bebidas"
+    }
+]

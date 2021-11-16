@@ -12,7 +12,7 @@
           <items>
             <Input id="uid" placeholder="{i18n>userInput}"></Input>
             <Input id="pasw" placeholder="{i18n>passwordInput}" type="Password"></Input>
-            <Button width="12rem" text="{i18n>submitButton}" type="Emphasized" press="onLoginTap"></Button>
+            <Button width="12rem" text="{i18n>submitButton}" type="Emphasized" press="onLoginTap"/>
           </items>
         </VBox>
       </content>

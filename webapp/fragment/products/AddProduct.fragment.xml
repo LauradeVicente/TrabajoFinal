@@ -5,13 +5,14 @@
             <content>
                 <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
                     <items>
-                        <Input id="uid" placeholder="{i18n>productName}"/>
-                        <Input id="pasw" placeholder="{i18n>productQuantity}"/>
-                        <Input id="pasw" placeholder="{i18n>productBranch}"/>
-                        <Input id="pasw" placeholder="{i18n>productUnit}"/>
-                        <Input id="pasw" placeholder="{i18n>productCaducity}"/>
-                        <Input id="pasw" placeholder="{i18n>productType}"/>
-                        <Button width="12rem" text="{i18n>submitButton}" type="Emphasized" press="onLoginTap"></Button>
+                        <Input id="product_name" placeholder="{i18n>productName}"/>
+                        <Input id="product_quant" type="Number" placeholder="{i18n>productQuantity}"/>
+                        <Input id="product_branch" placeholder="{i18n>productBranch}"/>
+                        <Input id="product_price" type="Number" placeholder="{i18n>price-kg}"/>
+                        <Label text="{i18n>productCaducity}" labelFor="cad"/>
+                        <DatePicker id="product_cad"/>
+                        <Input id="product_type" placeholder="{i18n>productType}"/>
+                        <Button width="12rem" text="{i18n>addProductPopoverButton}" type="Emphasized" press="addProduct"></Button>
                     </items>
                 </VBox>
             </content>
