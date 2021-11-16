@@ -8,6 +8,42 @@
     xmlns="sap.m"
 >
 		<App>
-            <Text text="{productDetail>/name}"/>
+
+           <ObjectHeader
+                id="detailObjHeader"
+                responsive="true"
+				title="{productDetail>/name}"
+				number="{productDetail>/price-kg}"
+                icon="{productDetail>/image}"
+                iconDensityAware="false"
+                iconAlt="{productDetail>/name}">
+				<attributes>
+					<ObjectAttribute title="{i18n>productCaducity}" text="{path: 'productDetail>/caducity', 
+                                                                            formatter:'restaurant.finalproject.util.Formatter.setDate'}"/>
+					<ObjectAttribute title="{i18n>productType}" text="{productDetail>/type}"/>
+				</attributes>
+
+                <headerContainer>
+                    <IconTabBar id="idIconTabBar">
+				        <items>
+					        <IconTabFilter
+						        key="supplier"
+						        text="{i18n>iconTabFilterSupplier}"
+						        icon="sap-icon://supplier">
+						            <Text text="supplier info"/>
+					        </IconTabFilter>
+					        <IconTabFilter
+						        key="category"
+						        text="{i18n>iconTabFilterCategory}"
+						        icon="sap-icon://hint">
+						            <Text text="category info"/>
+					        </IconTabFilter>
+				        </items>
+			        </IconTabBar>
+                </headerContainer>
+
+			</ObjectHeader>
+           
         </App>
+
 </mvc:View>

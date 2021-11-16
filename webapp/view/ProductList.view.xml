@@ -35,10 +35,10 @@
 								<Text text="{i18n>productQuantity}"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>productBranch}"/>
+								<Text text="{i18n>productSupplier}"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>productPrice}"/>
+								<Text text="{i18n>productPriceKg}"/>
 							</Column>
 							<Column>
 								<Text text="{i18n>productCaducity}"/>
@@ -52,7 +52,7 @@
 								<cells>
 									<Text text="{productsTemp>name}"/>
 									<Text text="{productsTemp>quantity}"/>
-									<Text text="{productsTemp>branch}"/>
+									<Text text="{productsTemp>supplier}"/>
 									<Text text="{productsTemp>price-kg}"/>
 									<Text text="{path: 'productsTemp>caducity', 
 										formatter: 'restaurant.finalproject.util.Formatter.setDate'}"/>

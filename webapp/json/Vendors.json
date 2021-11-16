@@ -1,44 +1,72 @@
 {
     "value": [{
         "id": "001",
-        "name": "Harina de trigo",
+        "product": "Harina de trigo",
+        "name": "Costco",
         "city": "Valencia",
         "country": "España"
     },
     {
         "id": "002",
-        "name": "Boniato",
+        "product": "Boniato",
+        "name": "Costco",
         "city": "Gerona",
         "country": "España"
     },
     {
         "id": "003",
-        "name": "Calabaza",
+        "product": "Calabaza",
+        "name": "Frutería Hnos. Glez.",
         "city": "Vigo",
         "country": "España"
     },
     {
         "id": "004",
-        "name": "Queso de vaca",
+        "product": "Queso de vaca",
+        "name": "Costco",
         "city": "Madrid",
         "country": "España"
     },
     {
         "id": "005",
-        "name": "Pan",
+        "product": "Pan",
+        "name": "Panadería La Miga",
         "city": "Gijón",
         "country": "España"
     },
     {
         "id": "006",
-        "name": "Cebolla",
-        "city": "Londres",
-        "country": "Reino Unido"
+        "product": "Cebolla",
+        "name": "Frutería Hnos. Glez.",
+        "city": "Albacete",
+        "country": "España"
     },
     {
         "id": "007",
-        "name": "Pimienta molida",
-        "city": "Alabama",
-        "country": "Estados Unidos"
+        "product": "Pimienta molida",
+        "name": "Costco",
+        "city": "Navarra",
+        "country": "España"
+    },
+    {
+        "id": "008",
+        "product": "Manzana golden",
+        "name": "Costco",
+        "city": "Cádiz",
+        "country": "España"
+    },
+    {
+        "id": "009",
+        "product": "Lenteja pardina",
+        "name": "Costco",
+        "city": "Madrid",
+        "country": "España"
+    },
+    {
+        "id": "010",
+        "product": "Arroz redondo",
+        "name": "Costco",
+        "city": "Madrid",
+        "country": "España"
     }]
 }

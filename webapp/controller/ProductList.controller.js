@@ -17,24 +17,8 @@ sap.ui.define([
 		return Router.extend("restaurant.finalproject.controller.ProductList", {
 
 			onInit: async function () {
-				await this.initModels();
-				await this.loadModels();
-			}, 
-
-			initModels: function () {
-				this.getView().setModel(new JSONModel(), "productsTemp");
+				
 			},
-
-            loadModels: async function () {
-                await this.loadProductsModel();
-            }, 
-
-            loadProductsModel: async function () {
-				const oModelProductsTemp = this.getView().getModel("productsTemp");
-                const oModelProducts = this.getOwnerComponent().getModel("products");
-				const oProductsData = jQuery.extend(true, {}, oModelProducts.getProperty("/value"));
-				oModelProductsTemp.setProperty("/value", oProductsData);
-            },
 
 			onFilterProductName: function (oEvent) {
 				var aFilter = [],
@@ -97,31 +81,43 @@ sap.ui.define([
 			},
 
 			addProduct: function (oEvent) {
-				const sName = this.getView().byId("product_name");
-				const sQuant = this.getView().byId("product_quant");
-				const sBranch = this.getView().byId("product_branch");
-				const sPrice = this.getView().byId("product_price");
-				const sCad = this.getView().byId("product_cad");
-				const sType = this.getView().byId("product_type");
+				const sName = this.getView().byId("product_name").getValue();
+				const sQuant = this.getView().byId("product_quant").getValue();
+				const sSupplier = this.getView().byId("product_supplier").getValue();
+				const sPrice = this.getView().byId("product_price").getValue();
+				const sCad = this.getView().byId("product_cad").getValue();
+				const sType = this.getView().byId("product_type").getValue();
+				const sImage = this.getView().byId("product_image").getValue();
 				
 				const oProductsModel = this.getOwnerComponent().getModel("products");				
 				const oProductsTempModel = this.getView().getModel("productsTemp");
 
 				const oNewProduct = {
 					"id": "p_" + Math.floor(Math.random() * 999),
-					"name": sName + "kg",
+					"name": sName,
 					"quantity": sQuant + "kg",
-					"branch": sBranch,
+					"supplier": sSupplier,
 					"price": sPrice + "€/kg",
 					"caducity": sCad,
-					"sType": sType
+					"type": sType,
+					"image": sImage
 				};
 
-				oProductsModel.setProperty("/value", oNewProduct);
-				oProductsTempModel.setProperty("/value", oNewProduct);
+				oProductsModel.setProperty("/", oNewProduct);
+				oProductsTempModel.setProperty("/", oNewProduct);
 				oProductsModel.refresh(true);
 				oProductsTempModel.refresh(true);
 
-			}
+			},
+
+			onSuggest: function (oEvent) {
+				let sTerm = oEvent.getParameter("suggestValue");
+				var aFilters = [];
+				if (sTerm) {
+					aFilters.push(new Filter("type", FilterOperator.StartsWith, sTerm));
+				}
+
+				oEvent.getSource().getBinding("suggestionItems").filter(aFilters);
+			} 
         });
 	});

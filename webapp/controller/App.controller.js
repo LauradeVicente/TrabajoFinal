@@ -30,21 +30,32 @@ sap.ui.define([
 			},
 			
 			initModels: function () {
+				this.getOwnerComponent().setModel(new JSONModel(), "productsTemp");
 				this.getOwnerComponent().setModel(new JSONModel(), "productTypes");
 				this.getOwnerComponent().setModel(new JSONModel(), "users");
-				this.getView().setModel(new JSONModel(), "coldStorages");
-				this.getView().setModel(new JSONModel(), "incidents");
 				this.getOwnerComponent().setModel(new JSONModel(), "products");
-				this.getView().setModel(new JSONModel(), "vendors");
+				this.getOwnerComponent().setModel(new JSONModel(), "vendors");
 			},
 
 			loadModels: async function () {
+				await this.loadProductsModel();
+				await this.loadProductsTempModel();
 				await this.loadProductTypesModel();
 				await this.loadUsersModel();
-				await this.loadStoragesModel();
-				await this.loadIncidentsModel();
-				await this.loadProductsModel();
 				await this.loadVendorsModel();
+			},
+
+			
+			loadProductsModel: async function () {
+				const oProductsModel = this.getOwnerComponent().getModel("products");
+				await oProductsModel.loadData("json/Products.json");
+			},
+
+			loadProductsTempModel: async function () {
+				const oModelProductsTemp = this.getOwnerComponent().getModel("productsTemp");
+                const oModelProducts = this.getOwnerComponent().getModel("products");
+				const oProductsData = jQuery.extend(true, {}, oModelProducts.getProperty("/value"));
+				oModelProductsTemp.setProperty("/value", oProductsData);
 			},
 
 			loadProductTypesModel: async function () {
@@ -57,23 +68,8 @@ sap.ui.define([
 				await oStoragesModel.loadData("json/Users.json");
 			},
 
-			loadStoragesModel: async function () {
-				const oStoragesModel = this.getView().getModel("coldStorages");
-				await oStoragesModel.loadData("json/ColdStorages.json");
-			},
-
-			loadIncidentsModel: async function () {
-				const oIncidentsModel = this.getView().getModel("incidents");
-				await oIncidentsModel.loadData("json/Incidents.json");
-			},
-
-			loadProductsModel: async function () {
-				const oProductsModel = this.getOwnerComponent().getModel("products");
-				await oProductsModel.loadData("json/Products.json");
-			},
-
 			loadVendorsModel: async function () {
-				const oVendorsModel = this.getView().getModel("vendors");
+				const oVendorsModel = this.getOwnerComponent().getModel("vendors");
 				await oVendorsModel.loadData("json/Vendors.json");
 			}
 

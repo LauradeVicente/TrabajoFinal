@@ -1,20 +1,31 @@
 <core:FragmentDefinition xmlns="sap.m" 
     controllerName="restaurant.finalproject.controller.ProductList"
     xmlns:core="sap.ui.core">
-        <Popover title="addProduct" placement="Bottom" initialFocus="">
+
+        <Popover placement="Bottom" initialFocus="">
             <content>
                 <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
                     <items>
                         <Input id="product_name" placeholder="{i18n>productName}"/>
                         <Input id="product_quant" type="Number" placeholder="{i18n>productQuantity}"/>
-                        <Input id="product_branch" placeholder="{i18n>productBranch}"/>
-                        <Input id="product_price" type="Number" placeholder="{i18n>price-kg}"/>
+                        <Input id="product_supplier" placeholder="{i18n>productSupplier}"/>
+                        <Input id="product_price" type="Number" placeholder="{i18n>productPriceKg}"/>
+                        <Input id="product_image" type="Url" placeholder="{i18n>productImageUrl}"/>
                         <Label text="{i18n>productCaducity}" labelFor="cad"/>
-                        <DatePicker id="product_cad"/>
-                        <Input id="product_type" placeholder="{i18n>productType}"/>
+                        <DatePicker id="product_cad" placeholder="{i18n>productCaducity}"/>
+                        <Input id="product_type" 
+                               placeholder="{i18n>productType}"
+                               showSuggestion="true"
+                               suggest=".onSuggest"
+                               suggestionItems="{productTypes>/}">
+                            <suggestionItems>  
+                                <core:Item text="{productTypes>type}"/>
+                            </suggestionItems>
+                        </Input>
                         <Button width="12rem" text="{i18n>addProductPopoverButton}" type="Emphasized" press="addProduct"></Button>
                     </items>
                 </VBox>
             </content>
         </Popover>
+
 </core:FragmentDefinition>
