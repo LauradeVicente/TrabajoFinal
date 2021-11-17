@@ -54,7 +54,7 @@ sap.ui.define([
 			loadProductsTempModel: async function () {
 				const oModelProductsTemp = this.getOwnerComponent().getModel("productsTemp");
                 const oModelProducts = this.getOwnerComponent().getModel("products");
-				const oProductsData = jQuery.extend(true, {}, oModelProducts.getProperty("/value"));
+				const oProductsData = jQuery.extend(true, [], oModelProducts.getProperty("/value"));
 				oModelProductsTemp.setProperty("/value", oProductsData);
 			},
 

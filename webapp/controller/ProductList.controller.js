@@ -17,7 +17,8 @@ sap.ui.define([
 		return Router.extend("restaurant.finalproject.controller.ProductList", {
 
 			onInit: async function () {
-				
+				this.getView().setModel(new JSONModel(), "dialog");
+
 			},
 
 			onFilterProductName: function (oEvent) {
@@ -50,22 +51,32 @@ sap.ui.define([
 			},
 
 			handlePopoverAddProducts: function (oEvent) {
-				let oButton = oEvent.getSource();
 				let oView = this.getView();
+				const oDialogModel = this.getView().getModel("dialog");
 
-				if (!this._pPopover) {
-					this._pPopover = Fragment.load({
+				if (!this._oDialog) {
+					Fragment.load({
 						id: oView.getId(),
 						name: "restaurant.finalproject.fragment.products.AddProduct",
 						controller: this
-					}).then(function (oPopover) {
-						oView.addDependent(oPopover);
-						return oPopover;
-					});
+					}).then(function (oDialog) {
+						this._oDialog = oDialog;
+						oView.addDependent(this._oDialog);
+						oDialogModel.setData({});
+						this._oDialog.open();
+					}.bind(this));
+				} else {
+					oDialogModel.setData({});
+					this._oDialog.open();
 				}
-				this._pPopover.then(function (oPopover) {
-					oPopover.openBy(oButton);
-				})
+				
+			},
+
+			closeAddProductsDialog: function () {
+				if (!this._oDialog) return;
+				this._oDialog.close();
+				this._oDialog.destroy();
+				this._oDialog = null;
 			},
 
 			navToDetail: async function (oEvent) {
@@ -81,32 +92,19 @@ sap.ui.define([
 			},
 
 			addProduct: function (oEvent) {
-				const sName = this.getView().byId("product_name").getValue();
-				const sQuant = this.getView().byId("product_quant").getValue();
-				const sSupplier = this.getView().byId("product_supplier").getValue();
-				const sPrice = this.getView().byId("product_price").getValue();
-				const sCad = this.getView().byId("product_cad").getValue();
-				const sType = this.getView().byId("product_type").getValue();
-				const sImage = this.getView().byId("product_image").getValue();
 				
+				const oDialogData = this.getView().getModel("dialog").getProperty("/");
 				const oProductsModel = this.getOwnerComponent().getModel("products");				
 				const oProductsTempModel = this.getView().getModel("productsTemp");
+				const aProductsTempData = oProductsTempModel.getProperty("/value");
 
-				const oNewProduct = {
-					"id": "p_" + Math.floor(Math.random() * 999),
-					"name": sName,
-					"quantity": sQuant + "kg",
-					"supplier": sSupplier,
-					"price": sPrice + "€/kg",
-					"caducity": sCad,
-					"type": sType,
-					"image": sImage
-				};
+				aProductsTempData.push(oDialogData);
 
-				oProductsModel.setProperty("/", oNewProduct);
-				oProductsTempModel.setProperty("/", oNewProduct);
+				oProductsModel.setProperty("/value", aProductsTempData);
+				oProductsTempModel.setProperty("/value", aProductsTempData);
 				oProductsModel.refresh(true);
 				oProductsTempModel.refresh(true);
+				this.closeAddProductsDialog();
 
 			},
 

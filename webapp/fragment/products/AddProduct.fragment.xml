@@ -2,30 +2,46 @@
     controllerName="restaurant.finalproject.controller.ProductList"
     xmlns:core="sap.ui.core">
 
-        <Popover placement="Bottom" initialFocus="">
-            <content>
+        <Dialog>
+            
                 <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
-                    <items>
-                        <Input id="product_name" placeholder="{i18n>productName}"/>
-                        <Input id="product_quant" type="Number" placeholder="{i18n>productQuantity}"/>
-                        <Input id="product_supplier" placeholder="{i18n>productSupplier}"/>
-                        <Input id="product_price" type="Number" placeholder="{i18n>productPriceKg}"/>
-                        <Input id="product_image" type="Url" placeholder="{i18n>productImageUrl}"/>
-                        <Label text="{i18n>productCaducity}" labelFor="cad"/>
-                        <DatePicker id="product_cad" placeholder="{i18n>productCaducity}"/>
+                    
+                    <HBox>
+                    <Label text="{i18n>productName}" labelFor="product_name"/>
+                        <Input id="product_name" placeholder="{i18n>productName}" value="{dialog>/name}"/>
+                        <Label text="{i18n>productSupplier}" labelFor="product_supplier"/>
+                        <Input id="product_supplier" placeholder="{i18n>productSupplier}" value="{dialog>/supplier}"/>
+                        <Label text="{i18n>productType}" labelFor="product_type"/>
                         <Input id="product_type" 
                                placeholder="{i18n>productType}"
                                showSuggestion="true"
                                suggest=".onSuggest"
-                               suggestionItems="{productTypes>/}">
+                               suggestionItems="{productTypes>/}"
+                                value="{dialog>/type}">
                             <suggestionItems>  
                                 <core:Item text="{productTypes>type}"/>
                             </suggestionItems>
                         </Input>
+                    </HBox>
+                    <HBox>
+                    <Label text="{i18n>productPriceKg}" labelFor="product_price"/>
+                        <Input id="product_price" type="Number" placeholder="{i18n>productPriceKg}" value="{dialog>/price-kg}"/>
+                        <Label text="{i18n>productQuantity}" labelFor="product_quant"/>
+                        <Input id="product_quant" type="Number" placeholder="{i18n>productQuantity}" value="{dialog>/quant}"/>
+                    </HBox>
+                    <HBox>
+                    <Label text="{i18n>productImageUrl}" labelFor="product_image"/>
+                        <Input id="product_image" type="Url" placeholder="{i18n>productImageUrl}" value="{dialog>/image}"/>
+                        <Label text="{i18n>productCaducity}" labelFor="product_cad"/>
+                        <DatePicker id="product_cad" value="{dialog>/caducity}" text="{i18n>productCaducity}"/>
+                    </HBox>
+                    <HBox>
+                        
+                    </HBox>
                         <Button width="12rem" text="{i18n>addProductPopoverButton}" type="Emphasized" press="addProduct"></Button>
-                    </items>
+                    
                 </VBox>
-            </content>
-        </Popover>
+            
+        </Dialog>
 
 </core:FragmentDefinition>

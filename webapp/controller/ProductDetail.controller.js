@@ -14,17 +14,8 @@ sap.ui.define([
 
 		return Controller.extend("restaurant.finalproject.controller.ProductDetail", {
 
-			onInit: async function () {
-				await this.loadModels();
-			},
-
-            loadModels: function () {
-                this.loadProductDetailModel();
-            },
-
-            loadProductDetailModel: function () {
-                this.getOwnerComponent().getModel("productDetail");
-            }
+			onInit: function () {
+			}
 
         });
     }
