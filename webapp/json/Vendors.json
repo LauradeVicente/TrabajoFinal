@@ -4,69 +4,119 @@
         "product": "Harina de trigo",
         "name": "Costco",
         "city": "Valencia",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "002",
         "product": "Boniato",
         "name": "Costco",
         "city": "Gerona",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "003",
         "product": "Calabaza",
         "name": "Frutería Hnos. Glez.",
         "city": "Vigo",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "004",
         "product": "Queso de vaca",
         "name": "Costco",
         "city": "Madrid",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "005",
         "product": "Pan",
         "name": "Panadería La Miga",
         "city": "Gijón",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "006",
         "product": "Cebolla",
         "name": "Frutería Hnos. Glez.",
         "city": "Albacete",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "007",
         "product": "Pimienta molida",
         "name": "Costco",
         "city": "Navarra",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "008",
         "product": "Manzana golden",
         "name": "Costco",
         "city": "Cádiz",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "009",
         "product": "Lenteja pardina",
         "name": "Costco",
         "city": "Madrid",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     },
     {
         "id": "010",
         "product": "Arroz redondo",
         "name": "Costco",
         "city": "Madrid",
-        "country": "España"
+        "country": "España",
+        "street": "Calle Gerardos, 18",
+        "telephone": "916485746",
+        "mobile": "+34 675432532",
+        "email": "costco.clients@costco.com",
+        "zip_code": "28240"
     }]
 }

@@ -4,7 +4,7 @@
         "name": "Harina de trigo",
         "quantity": "1kg",
         "supplier": "Costco",
-        "price-kg": "0.5€/kg",
+        "price_kg": "0.5€/kg",
         "caducity": "2022-08-27T11:59:07Z",
         "type": "Cereales",
         "image": "https://www.supercoke.es/wp-content/uploads/2020/05/122969.png"
@@ -14,7 +14,7 @@
         "name": "Boniato",
         "quantity": "1kg",
         "supplier": "Costco",
-        "price-kg": "1.2€/kg",
+        "price_kg": "1.2€/kg",
         "caducity": "2021-02-01T11:59:07Z",
         "type": "Verduras",
         "image": "https://static-blogs.mujerhoy.com/adelgazar/wp-content/uploads/sites/9/2018/01/boniatos.jpg"
@@ -24,7 +24,7 @@
         "name": "Calabaza",
         "quantity": "2kg",
         "supplier": "Frutería Hnos. Glez.",
-        "price-kg": "2.5€/kg",
+        "price_kg": "2.5€/kg",
         "caducity": "2023-10-03T11:59:07Z",
         "type": "Verduras",
         "image": "https://i.blogs.es/703eab/pumpkins-457716_1280/840_560.jpg"
@@ -34,7 +34,7 @@
         "name": "Queso de vaca",
         "quantity": "0.5kg",
         "supplier": "Costco",
-        "price-kg": "8€/kg",
+        "price_kg": "8€/kg",
         "caducity": "2022-09-12T11:59:07Z",
         "type": "Lácteos y derivados",
         "image": "https://static.wixstatic.com/media/59467d_f875e01fefa442ecab11d65446672249~mv2.png/v1/fill/w_900,h_600,al_c/59467d_f875e01fefa442ecab11d65446672249~mv2.png"
@@ -44,7 +44,7 @@
         "name": "Pan",
         "quantity": "0.25kg",
         "supplier": "Panadería La Miga",
-        "price-kg": "0.75€/kg",
+        "price_kg": "0.75€/kg",
         "caducity": "2024-01-20T11:59:07Z",
         "type": "Cereales",
         "image": "https://www.hornoalmadain.com/wp-content/uploads/2021/04/1_Im0-2-717x1024.jpeg"
@@ -54,7 +54,7 @@
         "name": "Cebolla",
         "quantity": "1kg",
         "supplier": "Frutería Hnos. Glez.",
-        "price-kg": "1€/kg",
+        "price_kg": "1€/kg",
         "caducity": "2023-05-22T11:59:07Z",
         "type": "Verduras",
         "image": "https://upload.wikimedia.org/wikipedia/commons/3/34/Two_colors_of_onions.jpg"
@@ -64,7 +64,7 @@
         "name": "Pimienta molida",
         "quantity": "0.25kg",
         "supplier": "Costco",
-        "price-kg": "0.2€/kg",
+        "price_kg": "0.2€/kg",
         "caducity": "2025-12-07T11:59:07Z",
         "type": "Especias",
         "image": "https://tienda.copima.es/15298-large_default/pimienta-molida-negra-bote-900-gr.jpg"
@@ -74,7 +74,7 @@
         "name": "Manzana golden",
         "quantity": "1.5kg",
         "supplier": "Costco",
-        "price-kg": "2€/kg",
+        "price_kg": "2€/kg",
         "caducity": "2022-03-12T11:59:07Z",
         "type": "Frutas",
         "image": "https://comedelahuerta.com/wp-content/uploads/2019/09/MANZANA-GOLDEN-ECOLOGICO-COMEDELAHUERTA-1.jpg"
@@ -84,7 +84,7 @@
         "name": "Lenteja pardina",
         "quantity": "1kg",
         "supplier": "Costco",
-        "price-kg": "1.3€/kg",
+        "price_kg": "1.3€/kg",
         "caducity": "2025-05-01T11:59:07Z",
         "type": "Legumbres",
         "image": "https://legumbreselrua.es/wp-content/uploads/2020/04/lenteja_pardina_el_rua_morana.jpg"
@@ -94,7 +94,7 @@
         "name": "Arroz redondo",
         "quantity": "1kg",
         "supplier": "Costco",
-        "price-kg": "0.5€/kg",
+        "price_kg": "0.5€/kg",
         "caducity": "2026-11-05T11:59:07Z",
         "type": "Cereales",
         "image": "https://www.marquezshop.com/media/images/product/2020/04/28/1588095469/0018_jpg_400x400_sharpen_q85.jpg"

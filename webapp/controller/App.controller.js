@@ -1,15 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"sap/ui/model/FilterType",
-	"restaurant/finalproject/util/Formatter",
 	"restaurant/finalproject/Router"
 ],
 	
 
-	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router) {
+	function (JSONModel, Router) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.App", {
@@ -23,7 +18,7 @@ sap.ui.define([
 			initRouter: function () {
 				const Router = this.getRouter();
 				if (Router._bIsInitialized) {
-					Router.navTo("Home");
+					Router.navTo("ProductList");
 				} else {
 					Router.initialize();
 				}
@@ -54,8 +49,9 @@ sap.ui.define([
 			loadProductsTempModel: async function () {
 				const oModelProductsTemp = this.getOwnerComponent().getModel("productsTemp");
                 const oModelProducts = this.getOwnerComponent().getModel("products");
-				const oProductsData = jQuery.extend(true, [], oModelProducts.getProperty("/value"));
-				oModelProductsTemp.setProperty("/value", oProductsData);
+				const aProductsData = jQuery.extend(true, [], oModelProducts.getProperty("/value"));
+				oModelProductsTemp.setProperty("/value", aProductsData);
+				
 			},
 
 			loadProductTypesModel: async function () {

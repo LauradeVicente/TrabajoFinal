@@ -1,48 +1,135 @@
 <mvc:View
     controllerName="restaurant.finalproject.controller.ProductDetail"
+	xmlns="sap.m"
 	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
     xmlns:tnt="sap.tnt"
-    displayBlock="true"
-    xmlns="sap.m"
->
+	xmlns:layout="sap.ui.layout"
+    displayBlock="true">
 		<App>
 
-           <ObjectHeader
-                id="detailObjHeader"
-                responsive="true"
-				title="{productDetail>/name}"
-				number="{productDetail>/price-kg}"
-                icon="{productDetail>/image}"
-                iconDensityAware="false"
-                iconAlt="{productDetail>/name}">
-				<attributes>
-					<ObjectAttribute title="{i18n>productCaducity}" text="{path: 'productDetail>/caducity', 
-                                                                            formatter:'restaurant.finalproject.util.Formatter.setDate'}"/>
-					<ObjectAttribute title="{i18n>productType}" text="{productDetail>/type}"/>
-				</attributes>
+			<f:DynamicPage id="detailView">
+				<f:title>
+					<f:DynamicPageTitle>
+						<f:heading>
+							<Title text="{productDetail>/name}" />
+						</f:heading>
+						<f:expandedContent>
+							<Text text="{productDetail>/type}" />
+						</f:expandedContent>
+						<f:snappedContent>
+							<Text text="{productDetail>/type}" />
+						</f:snappedContent>
+					</f:DynamicPageTitle>
+				</f:title>
+				<f:header>
+					<f:DynamicPageHeader pinnable="true">
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<Panel backgroundDesign="Transparent" class="sapUiNoContentPadding">
+								<layout:HorizontalLayout allowWrapping="true">
+									<layout:VerticalLayout class="sapUiMediumMarginEnd">
+										<ObjectAttribute title="{i18n>productQuantity}" text="{productDetail>/quantity}" />
+										<ObjectAttribute title="{i18n>productPriceKg}" text="{productDetail>/price_kg}" />
+										<ObjectAttribute title="{i18n>productCaducity}" text="{path: 'productDetail>caducity', 
+																							   formatter: 'restaurant.finalproject.util.Formatter.setDate'}"/>
+									</layout:VerticalLayout>
+								</layout:HorizontalLayout>
+							</Panel>
+						</FlexBox>
+					</f:DynamicPageHeader>
+				</f:header>
 
-                <headerContainer>
-                    <IconTabBar id="idIconTabBar">
+                <f:content>
+                    <IconTabBar id="iconTabBarDetailView">
 				        <items>
 					        <IconTabFilter
 						        key="supplier"
 						        text="{i18n>iconTabFilterSupplier}"
 						        icon="sap-icon://supplier">
-						            <Text text="supplier info"/>
-					        </IconTabFilter>
-					        <IconTabFilter
-						        key="category"
-						        text="{i18n>iconTabFilterCategory}"
-						        icon="sap-icon://hint">
-						            <Text text="category info"/>
-					        </IconTabFilter>
+						            <content>
+										<form:Form id="formDetailView"
+												editable="false">
+											<form:title>
+												<core:Title text="Supplier" />
+											</form:title>
+											<form:layout>
+												<form:ColumnLayout 
+													columnsM="2"
+													columnsL="3"
+													columnsXL="4"
+												/>
+											</form:layout>
+											<form:formContainers>
+												<form:FormContainer title="{i18n>supplierAddressTitle}">
+													<form:formElements>
+														<form:FormElement label="Name">
+															<form:fields>
+																<Text text="{productVendor>/name}" id="nameText"  />
+															</form:fields>
+														</form:FormElement>
+														<form:FormElement label="Street">
+															<form:fields>
+																<Text text="{productVendor>/street}" />
+															</form:fields>
+														</form:FormElement>
+														<form:FormElement label="ZIP Code/City">
+															<form:fields>
+																<Text text="{productVendor>/zip_code} {productVendor>/city}" />
+															</form:fields>
+														</form:FormElement>
+														<form:FormElement label="Country">
+															<form:fields>
+																<Text text="{productVendor>/country}" id="countryText" />
+															</form:fields>
+														</form:FormElement>
+													</form:formElements>
+												</form:FormContainer>
+												<form:FormContainer title="{i18n>supplierContactTitle}">
+													<form:formElements>
+														<form:FormElement label="Email">
+															<form:fields>
+																<Text text="{productVendor>/email}" />
+															</form:fields>
+														</form:FormElement>
+														<form:FormElement label="Telephone">
+															<form:fields>
+																<Text text="{productVendor>/telephone}" />
+															</form:fields>
+														</form:FormElement>
+														<form:FormElement label="Mobile">
+															<form:fields>
+																<Text text="{productVendor>/mobile}" />
+															</form:fields>
+														</form:FormElement>
+													</form:formElements>
+												</form:FormContainer>
+											</form:formContainers>
+										</form:Form>
+									</content>
+					        	</IconTabFilter>
+					        	<IconTabFilter
+						        	key="category"
+						        	text="{i18n>iconTabFilterCategory}"
+						        	icon="sap-icon://hint">
+
+										<Image
+                                        src="{productDetail>/image}"
+										vAlign="Right"
+                                        width="10rem"
+                                        height="10rem"/>
+						            	
+					        	</IconTabFilter>
 				        </items>
 			        </IconTabBar>
-                </headerContainer>
-
-			</ObjectHeader>
+                </f:content>
+				<f:footer >
+        				<OverflowToolbar>
+							<Text text="{i18n>footerTitle}"/>
+        				</OverflowToolbar>
+      				</f:footer>
+			</f:DynamicPage>
            
         </App>
 

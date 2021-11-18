@@ -1,15 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"sap/ui/model/FilterType",
-	"restaurant/finalproject/util/Formatter",
-	"restaurant/finalproject/Router"
+	"restaurant/finalproject/util/Formatter"
+	
 ],
 	
 
-	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router) {
+	function (Controller, Formatter) {
 		"use strict";
 
 		return Controller.extend("restaurant.finalproject.controller.ProductDetail", {

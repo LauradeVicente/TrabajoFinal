@@ -1,17 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"sap/ui/model/FilterType",
-    "restaurant/finalproject/util/Formatter",
 	"restaurant/finalproject/Router",
 	"sap/m/MessageToast",
-	"sap/m/BusyIndicator"
 ],
 	
 
-	function (Controller, JSONModel, Filter, FilterOperator, FilterType, Formatter, Router, MessageToast, BusyIndicator) {
+	function (Router, MessageToast) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.Home", {

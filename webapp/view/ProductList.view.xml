@@ -9,7 +9,7 @@
 >
 		<App>
             <pages>
-				<Page id="page" title="{i18n>title}">
+				<Page id="productListView" title="{i18n>title}">
 					<tnt:ToolHeader>
 						<SearchField placeholder="{i18n>productNameFilter}"
 									 width="40%"
@@ -26,7 +26,9 @@
 					</tnt:ToolHeader>
 					<Table id="idProductsTable"
 						   items="{productsTemp>/value}"
-						   class="sapUiResponsiveContentPadding">
+						   class="sapUiResponsiveContentPadding"
+						   mode="Delete"
+						   delete="onDeleteProduct">
 						<columns>
 							<Column>
 								<Text text="{i18n>productName}"/>
@@ -48,12 +50,12 @@
 							</Column>
 						</columns>
 						<items>
-							<ColumnListItem vAlign="Middle" type="Navigation" press="navToDetail">
+							<ColumnListItem id="columnItem" vAlign="Middle" type="Navigation" press="navToDetail">
 								<cells>
 									<Text text="{productsTemp>name}"/>
 									<Text text="{productsTemp>quantity}"/>
 									<Text text="{productsTemp>supplier}"/>
-									<Text text="{productsTemp>price-kg}"/>
+									<Text text="{productsTemp>price_kg}"/>
 									<Text text="{path: 'productsTemp>caducity', 
 										formatter: 'restaurant.finalproject.util.Formatter.setDate'}"/>
                                     <Text text="{productsTemp>type}"/>
