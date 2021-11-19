@@ -22,6 +22,17 @@
 						<f:snappedContent>
 							<Text text="{productDetail>/type}" />
 						</f:snappedContent>
+						<f:content>
+							<GenericTag text="SR"
+								status="Error"
+								press="onGenericTagPress"
+								design="StatusIconHidden">
+								<ObjectNumber number="2"
+									unit="M"
+									emphasized="false"
+									state="Error"/>
+							</GenericTag>
+						</f:content>
 					</f:DynamicPageTitle>
 				</f:title>
 				<f:header>
@@ -116,7 +127,6 @@
 
 										<Image
                                         src="{productDetail>/image}"
-										vAlign="Right"
                                         width="10rem"
                                         height="10rem"/>
 						            	
