@@ -7,23 +7,25 @@
     displayBlock="true"
     xmlns="sap.m"
 >
-		<App>
-            <pages>
-				<Page id="productListView" title="{i18n>title}">
-					<tnt:ToolHeader>
-						<SearchField placeholder="{i18n>productNameFilter}"
-									 width="40%"
-									 search="onFilterProductName"/>
-						<MultiComboBox id="productsMCB"
-									placeholder="{i18n>productTypeFilter}"
-									width="40%"
-									selectionChange="onFilterProductType"
-									items="{path: 'productTypes>/'}">
-										<core:Item key="{productTypes>id}" text="{productTypes>type}"/>
-						</MultiComboBox>
-						<Button text="{i18n>addProductButton}" 
-								press="handlePopoverAddProducts"/>
-					</tnt:ToolHeader>
+	<App>
+        <pages>
+			<Page id="productListView" title="{i18n>title}">
+				<tnt:ToolHeader>
+					<SearchField placeholder="{i18n>productNameFilter}"
+								width="40%"
+								search="onFilterProductName"/>
+					<MultiComboBox id="productsMCB"
+								placeholder="{i18n>productTypeFilter}"
+								width="40%"
+								selectionChange="onFilterProductType"
+								items="{path: 'productTypes>/'}">
+									<core:Item key="{productTypes>id}" text="{productTypes>type}"/>
+					</MultiComboBox>
+					<Button text="{i18n>addProductButton}" 
+							icon="sap-icon://add-product"
+							press="handlePopoverAddProducts"/>
+				</tnt:ToolHeader>
+				<HBox>
 					<Table id="idProductsTable"
 						   items="{productsTemp>/value}"
 						   class="sapUiResponsiveContentPadding"
@@ -63,17 +65,18 @@
 							</ColumnListItem>
 						</items>
 					</Table>
-					<footer >
-        				<Bar>
-          					<contentLeft>
-            					<Text text="{i18n>footerTitle}"></Text>
-          					</contentLeft>
-          					<contentRight>
-            					<Text text="{i18n>footerProducts}"></Text>
-          					</contentRight>
-        				</Bar>
-      				</footer>
-				</Page>
-			</pages>
-        </App>
+				</HBox>
+				<footer >
+        			<Bar>
+          				<contentLeft>
+            				<Text text="{i18n>footerTitle}"></Text>
+          				</contentLeft>
+          				<contentRight>
+            				<Text text="{i18n>footerProductsList}"></Text>
+          				</contentRight>
+        			</Bar>
+      			</footer>
+			</Page>
+		</pages>
+    </App>
 </mvc:View>

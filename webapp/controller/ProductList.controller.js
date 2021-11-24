@@ -48,7 +48,7 @@ sap.ui.define([
 				this.getView().getModel("productsTemp").setProperty("/value", aTempModelData);
 			},
 
-			handlePopoverAddProducts: function (oEvent) {
+			handlePopoverAddProducts: function () {
 				let oView = this.getView();
 				const oDialogModel = this.getView().getModel("dialog");
 
@@ -79,26 +79,27 @@ sap.ui.define([
 			navToDetail: async function (oEvent) {
 				let Router = this.getRouter();
 				let sModelPath = oEvent.getSource().getBindingContextPath();
-				let aProductsModelData = this.getOwnerComponent().getModel("products").getProperty(sModelPath);
+				let oProductData = this.getOwnerComponent().getModel("products").getProperty(sModelPath);
 
 				const aVendorsData = this.getOwnerComponent().getModel("vendors").getProperty("/value");
-				let oVendorData = aVendorsData.filter(oVendor => oVendor.id === aProductsModelData.id);
+				let aVendorData = aVendorsData.filter(oVendor => oVendor.product === oProductData.name);
 
 				this.getOwnerComponent().setModel(new JSONModel(), "productDetail");
 				let oDetailModel = this.getOwnerComponent().getModel("productDetail");
 				this.getOwnerComponent().setModel(new JSONModel(), "productVendor");
 				let oVendorModel = this.getOwnerComponent().getModel("productVendor");
 
-				await oDetailModel.setData(aProductsModelData);
-				await oVendorModel.setData(oVendorData);
+				await oDetailModel.setData(oProductData);
+				await oVendorModel.setData(aVendorData[0]);
 
 				Router.navTo("ProductDetail");
 			},
 
-			addProduct: function (oEvent) {
+			addProduct: function () {
 				const oDialogData = this.getView().getModel("dialog").getProperty("/");
+			
 
-				if (!this.checkAddProducts(oDialogData)) return false;
+				if (!Validator.checkAddProducts(oDialogData, this.getView())) return;
 				const oProductsModel = this.getOwnerComponent().getModel("products");				
 				const oProductsTempModel = this.getView().getModel("productsTemp");
 				const aProductsTempData = oProductsTempModel.getProperty("/value");
@@ -112,44 +113,6 @@ sap.ui.define([
 				this.closeAddProductsDialog();
 			},
 
-			checkAddProducts: function (oAddProductsData) {
-				if (!oAddProductsData.name) {
-					this.getView().byId("product_name").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_name").setValueState(ValueState.Success);
-				}
-				if (!oAddProductsData.supplier) {
-					this.getView().byId("product_supplier").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_supplier").setValueState(ValueState.Success);
-				}
-				if (!oAddProductsData.type){
-					this.getView().byId("product_type").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_type").setValueState(ValueState.Success);
-				}
-				if (!oAddProductsData.price_kg) {
-					this.getView().byId("product_price").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_price").setValueState(ValueState.Success);
-				}
-				if (!oAddProductsData.quantity) {
-					this.getView().byId("product_quant").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_quant").setValueState(ValueState.Success);
-				}
-				if (!oAddProductsData.image) {
-					this.getView().byId("product_image").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_image").setValueState(ValueState.Success);
-				}
-				if (!oAddProductsData.caducity) {
-					this.getView().byId("product_cad").setValueState(ValueState.Error);
-				} else {
-					this.getView().byId("product_cad").setValueState(ValueState.Success);
-				}
-			},
-
 			onSuggest: function (oEvent) {
 				let sTerm = oEvent.getParameter("suggestValue");
 				var aFilters = [];
@@ -161,28 +124,15 @@ sap.ui.define([
 			},
 			
 			onDeleteProduct: function (oEvent) {
-				const oStore = jQuery.sap.storage(jQuery.sap.storage.Type.session);
-				const aProductsTempData = oEvent.getParameter("listItem").getBindingContext("productsTemp").getProperty("/value");
-				for (let i = 0; i < aProductsTempData.length; i++) {
-					oStore.put(aProductsTempData[i].id, aProductsTempData[i]);
+				const oProductsModel = this.getOwnerComponent().getModel("productsTemp");
+				let sProductPath = oEvent.getParameter("listItem").getBindingContext("productsTemp").getPath();
+				oProductsModel.setProperty(sProductPath, undefined);
+				const aProducts = oProductsModel.getProperty("/value");
+				const iProductPath = aProducts.indexOf(undefined);
+				if (iProductPath > -1) {
+					aProducts.splice(iProductPath, 1);
 				}
-				
-
-				const oSelectedProduct = oEvent.getParameter("listItem").getBindingContext("productsTemp").getObject();
-				const sProductId = oEvent.getParameter("listItem").getBindingContext("productsTemp").getProperty("id");
-				const bResponse = oStore.remove(sProductId);
-				let aProducts = [];
-				if (bResponse) {
-					for (let i = 0; i < aProductsTempData.length; i++) {
-						aProducts.push(oStore.get(aProductsTempData[i].id));
-					}
-					
-				}
-				const oProductsTempModel = this.getOwnerComponent().getModel("productsTemp");
-				oProductsTempModel.setProperty("/value", aProducts);
-				oProductsTempModel.refresh(true);
-
-				
+				oProductsModel.refresh(true);
 			}
         });
 	});

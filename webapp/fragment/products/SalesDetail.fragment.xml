@@ -7,8 +7,8 @@
 			<f:Card width="300px">
 				<f:header>
 					<card:NumericHeader
-						title="Sales Revenue"
-						subtitle="Sales revenue in the current quarter"
+						title="{i18n>SalesRevenue}"
+						subtitle="{i18n>SalesRevenueSubtitle}"
 						unitOfMeasurement="EUR"
 						number="2.16"
 						scale="M"

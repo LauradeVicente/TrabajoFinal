@@ -1,17 +1,18 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"restaurant/finalproject/util/Formatter",
+	"restaurant/finalproject/Router",
 	"sap/ui/core/Fragment"
 ],
 	
 
-	function (Controller, Formatter,  Fragment) {
+	function (Controller, Formatter, Router,  Fragment) {
 		"use strict";
 
-		return Controller.extend("restaurant.finalproject.controller.ProductDetail", {
+		return Router.extend("restaurant.finalproject.controller.ProductDetail", {
 
 			onInit: function () {
-				this.getOwnerComponent().get
+				this.getOwnerComponent().getModel("productsVendor");
 			},
 
 			onGenericTagPress: function (oEvent) {
@@ -31,6 +32,16 @@ sap.ui.define([
 				} else {
 					this._pPopover.openBy(oSourceControl);
 				}
+			},
+
+			navToHome: function () {
+				let Router = this.getRouter();
+				Router.navTo("ProductList");
+			},
+	
+			navToSettings: function () {
+				let Router = this.getRouter();
+				Router.navTo("Settings");
 			}
 	
 

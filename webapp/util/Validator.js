@@ -6,27 +6,41 @@ function (ValueState) {
 
     const Validator = {
 
-        checkAddProducts: function (oAddProductsData) {
+        checkAddProducts: function (oAddProductsData, oView) {
             if (!oAddProductsData.name) {
-                this.byId("product_name").setValueState(ValueState.Error);
+                oView.byId("product_name").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_name").setValueState(ValueState.Success);
             }
             if (!oAddProductsData.supplier) {
-                this.byId("product_supplier").setValueState(ValueState.Error);
+                oView.byId("product_supplier").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_supplier").setValueState(ValueState.Success);
             }
             if (!oAddProductsData.type){
-                this.byId("product_type").setValueState(ValueState.Error);
+                oView.byId("product_type").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_type").setValueState(ValueState.Success);
             }
             if (!oAddProductsData.price_kg) {
-                this.byId("product_price").setValueState(ValueState.Error);
+                oView.byId("product_price").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_price").setValueState(ValueState.Success);
             }
             if (!oAddProductsData.quantity) {
-                this.byId("product_quant").setValueState(ValueState.Error);
+                oView.byId("product_quant").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_quant").setValueState(ValueState.Success);
             }
             if (!oAddProductsData.image) {
-                this.byId("product_image").setValueState(ValueState.Error);
+                oView.byId("product_image").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_image").setValueState(ValueState.Success);
             }
             if (!oAddProductsData.caducity) {
-                this.byId("product_cad").setValueState(ValueState.Error);
+                oView.byId("product_cad").setValueState(ValueState.Error);
+            } else {
+                oView.byId("product_cad").setValueState(ValueState.Success);
             }
         }
 

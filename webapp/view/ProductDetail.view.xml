@@ -7,58 +7,37 @@
 	xmlns:core="sap.ui.core"
     xmlns:tnt="sap.tnt"
 	xmlns:layout="sap.ui.layout"
+	xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
     displayBlock="true">
 		<App>
-
-			<f:DynamicPage id="detailView">
-				<f:title>
-					<f:DynamicPageTitle>
-						<f:heading>
-							<Title text="{productDetail>/name}" />
-						</f:heading>
-						<f:expandedContent>
-							<Text text="{productDetail>/type}" />
-						</f:expandedContent>
-						<f:snappedContent>
-							<Text text="{productDetail>/type}" />
-						</f:snappedContent>
-						<f:content>
-							<GenericTag text="SR"
-								status="Error"
-								press="onGenericTagPress"
-								design="StatusIconHidden">
-								<ObjectNumber number="2"
-									unit="M"
-									emphasized="false"
-									state="Error"/>
-							</GenericTag>
-						</f:content>
-					</f:DynamicPageTitle>
-				</f:title>
-				<f:header>
-					<f:DynamicPageHeader pinnable="true">
-						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
-							<Panel backgroundDesign="Transparent" class="sapUiNoContentPadding">
-								<layout:HorizontalLayout allowWrapping="true">
-									<layout:VerticalLayout class="sapUiMediumMarginEnd">
-										<ObjectAttribute title="{i18n>productQuantity}" text="{productDetail>/quantity}" />
-										<ObjectAttribute title="{i18n>productPriceKg}" text="{productDetail>/price_kg}" />
-										<ObjectAttribute title="{i18n>productCaducity}" text="{path: 'productDetail>caducity', 
-																							   formatter: 'restaurant.finalproject.util.Formatter.setDate'}"/>
-									</layout:VerticalLayout>
-								</layout:HorizontalLayout>
-							</Panel>
-						</FlexBox>
-					</f:DynamicPageHeader>
-				</f:header>
-
-                <f:content>
-                    <IconTabBar id="iconTabBarDetailView">
-				        <items>
-					        <IconTabFilter
-						        key="supplier"
-						        text="{i18n>iconTabFilterSupplier}"
-						        icon="sap-icon://supplier">
+			<Page id="detailView" title="{i18n>title}">
+				<content>
+					<ObjectHeader
+						title="{productDetail>/name}"
+						icon="{productDetail>/image}" 
+						iconAlt="{productDetail>/name}"
+						backgroundDesign="Solid"
+						class="sapUiResponsivePadding--header">
+						<attributes>
+							<ObjectAttribute title="{i18n>productType}" 
+											text="{productDetail>/type}" />
+							<ObjectAttribute title="{i18n>productCaducity}" 
+											text="{path: 'productDetail>/caducity', 
+						  						formatter: 'restaurant.finalproject.util.Formatter.setDate'}" />
+							<ObjectAttribute title="{i18n>productQuantity}" 
+											text="{productDetail>/quantity}" />
+							<ObjectAttribute title="{i18n>productPriceKg}" 
+											text="{productDetail>/price_kg}" />
+						</attributes>
+					</ObjectHeader>
+					<HBox>
+                    	<IconTabBar id="iconTabBarDetailView">
+				        	<items>
+					        	<IconTabFilter key="supplier"
+						        			text="{i18n>iconTabFilterSupplier}"
+						        			icon="sap-icon://supplier">
 						            <content>
 										<form:Form id="formDetailView"
 												editable="false">
@@ -120,27 +99,105 @@
 										</form:Form>
 									</content>
 					        	</IconTabFilter>
-					        	<IconTabFilter
-						        	key="category"
-						        	text="{i18n>iconTabFilterCategory}"
-						        	icon="sap-icon://hint">
-
-										<Image
-                                        src="{productDetail>/image}"
-                                        width="10rem"
-                                        height="10rem"/>
-						            	
+					        	<IconTabFilter key="sales"
+						        			text="{i18n>iconTabFilterSales}"
+						        			icon="sap-icon://hint">
+									<Image src="{productDetail>/image}"
+                                        	width="10rem"
+                                        	height="10rem"/>
+						            	<layout:FixFlex id='chartFixFlex' minFlexSize="250">
+        									<layout:fixContent>
+            									<Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="Settings" width="auto">
+               	 									<content>
+                    									<HBox class='settingsHBox'>
+                    										<VBox class='settingsBox'>
+                        										<Label text="{/dataset/name}" design="Bold" class='settingsLabel'></Label>
+                        										<RadioButtonGroup id='datasetRadioGroup'
+                                												buttons="{path: '/dataset/values'}">
+                            										<buttons>
+                                										<RadioButton class='settingsRadio' text="{name}" select="onDatasetSelected"/>
+                            										</buttons>
+                        										</RadioButtonGroup>
+            												</VBox>
+                    										<VBox class='settingsBox'>
+                        										<Label text = '{/dataLabel/name}' design="Bold" class='settingsLabel'></Label>
+                        										<Switch class='settingsSwitch' state="{/dataLabel/defaultState}" change='onDataLabelChanged'>
+                            										<layoutData>
+                                										<FlexItemData growFactor="1" />
+                            										</layoutData>
+                        										</Switch>
+                    										</VBox>
+                    										<VBox class='settingsBox'>
+                        										<Label text = '{/axisTitle/name}' design="Bold" class='settingsLabel'></Label>
+                        										<Switch class='settingsSwitch' state="{/axisTitle/defaultState}" change='onAxisTitleChanged'>
+                            										<layoutData>
+                                										<FlexItemData growFactor="1" />
+                            										</layoutData>
+                        										</Switch>
+                    										</VBox>
+                    									</HBox>
+                									</content>
+            									</Panel>
+											</layout:fixContent>
+        									<layout:flexContent>
+            									<viz:Popover id="idPopOver"></viz:Popover>
+            									<viz:VizFrame id="idVizFrame" 
+															uiConfig="{applicationSet:'fiori'}"
+                											height='100%' 
+															width="100%" 
+															vizType='column'>
+                									<viz:dataset>
+                    									<viz.data:FlattenedDataset data="{/milk}">
+                        									<viz.data:dimensions>
+                            									<viz.data:DimensionDefinition name="Week"
+                                															value="Week" />
+                        									</viz.data:dimensions>
+                        									<viz.data:measures>
+                            									<viz.data:MeasureDefinition name="Revenue"
+                                															value="Revenue" />
+                            									<viz.data:MeasureDefinition name="Cost"
+                                															value="Cost" />
+                        									</viz.data:measures>
+                    									</viz.data:FlattenedDataset>
+                									</viz:dataset>
+                									<viz:feeds>
+                    									<viz.feeds:FeedItem id='valueAxisFeed' 
+																			uid="valueAxis" 
+																			type="Measure"
+                        													values="Revenue" />
+                    									<viz.feeds:FeedItem id='categoryAxisFeed' 
+																			uid="categoryAxis" 
+																			type="Dimension"
+                        													values="Week" />
+                									</viz:feeds>
+            									</viz:VizFrame>
+        									</layout:flexContent>
+    									</layout:FixFlex>
 					        	</IconTabFilter>
-				        </items>
-			        </IconTabBar>
-                </f:content>
-				<f:footer >
-        				<OverflowToolbar>
-							<Text text="{i18n>footerTitle}"/>
-        				</OverflowToolbar>
-      				</f:footer>
-			</f:DynamicPage>
-           
+				        	</items>
+			        	</IconTabBar>
+						<tnt:SideNavigation id="sideNavigation" selectedKey="subItem3" expanded="false">
+							<tnt:NavigationList>
+								<tnt:NavigationListItem icon="sap-icon://home" select="navToHome"/>
+							</tnt:NavigationList>
+							<tnt:fixedItem>
+								<tnt:NavigationList>
+									<tnt:NavigationListItem icon="sap-icon://settings" select="navToSettings"/>
+								</tnt:NavigationList>
+							</tnt:fixedItem>
+						</tnt:SideNavigation>
+					</HBox>
+				</content>
+				<footer>
+					<Bar>
+        				<contentLeft>
+            				<Text text="{i18n>footerTitle}"/>
+          				</contentLeft>
+          				<contentRight>
+            				<Text text="{i18n>footerProductsDetail}"/>
+          				</contentRight>
+					</Bar>
+      			</footer>
+			</Page>
         </App>
-
 </mvc:View>
