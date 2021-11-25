@@ -1,11 +1,12 @@
 <mvc:View
     controllerName="restaurant.finalproject.controller.ProductList"
+	xmlns="sap.m"
 	xmlns:f="sap.f"
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
     xmlns:tnt="sap.tnt"
     displayBlock="true"
-    xmlns="sap.m"
 >
 	<App>
         <pages>
@@ -30,25 +31,44 @@
 						   items="{productsTemp>/value}"
 						   class="sapUiResponsiveContentPadding"
 						   mode="Delete"
-						   delete="onDeleteProduct">
+						   delete="onDeleteProduct"
+						   noDataText="{i18n>noDataText}">
 						<columns>
 							<Column>
-								<Text text="{i18n>productName}"/>
+								<layout:HorizontalLayout>
+									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<Text text="{i18n>productName}"/>
+								</layout:HorizontalLayout>
 							</Column>
 							<Column>
-								<Text text="{i18n>productQuantity}"/>
+								<layout:HorizontalLayout>
+									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<Text text="{i18n>productQuantity}"/>
+								</layout:HorizontalLayout>
 							</Column>
 							<Column>
-								<Text text="{i18n>productSupplier}"/>
+								<layout:HorizontalLayout>
+									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<Text text="{i18n>productSupplier}"/>
+								</layout:HorizontalLayout>
 							</Column>
 							<Column>
-								<Text text="{i18n>productPriceKg}"/>
+								<layout:HorizontalLayout>
+									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<Text text="{i18n>productPriceKg}"/>
+								</layout:HorizontalLayout>
 							</Column>
 							<Column>
-								<Text text="{i18n>productCaducity}"/>
+								<layout:HorizontalLayout>
+									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<Text text="{i18n>productCaducity}"/>
+								</layout:HorizontalLayout>
 							</Column>
                             <Column>
-								<Text text="{i18n>productType}"/>
+								<layout:HorizontalLayout>
+									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<Text text="{i18n>productType}"/>
+								</layout:HorizontalLayout>
 							</Column>
 						</columns>
 						<items>

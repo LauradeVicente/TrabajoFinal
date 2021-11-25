@@ -2,11 +2,12 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"restaurant/finalproject/util/Formatter",
 	"restaurant/finalproject/Router",
-	"sap/ui/core/Fragment"
+	"sap/ui/core/Fragment",
+	"restaurant/finalproject/util/Constants"
 ],
 	
 
-	function (Controller, Formatter, Router,  Fragment) {
+	function (Controller, Formatter, Router,  Fragment, Constants) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.ProductDetail", {
@@ -30,15 +31,11 @@ sap.ui.define([
                     	title: {
                         	visible: false
                     	}
-                	},
-                	title: {
-                    	visible: false,
-                    	text: 'Revenue by City and Store Name'
                 	}
             	});
 			},
 
-			onGenericTagPress: function (oEvent) {
+			/*onGenericTagPress: function (oEvent) {
 				let oView = this.getView();
 				let oSourceControl = oEvent.getSource();
 
@@ -55,7 +52,7 @@ sap.ui.define([
 				} else {
 					this._pPopover.openBy(oSourceControl);
 				}
-			},
+			},*/
 
 			navToHome: function () {
 				let Router = this.getRouter();
@@ -64,7 +61,7 @@ sap.ui.define([
 	
 			navToSettings: function () {
 				let Router = this.getRouter();
-				Router.navTo("Settings");
+				Router.navTo(Constants.model.SETTINGS);
 			},
 
         	onDataLabelChanged : function(oEvent){

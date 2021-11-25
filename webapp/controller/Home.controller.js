@@ -1,10 +1,11 @@
 sap.ui.define([
 	"restaurant/finalproject/Router",
 	"sap/m/MessageToast",
+	"restaurant/finalproject/util/Constants"
 ],
 	
 
-	function (Router, MessageToast) {
+	function (Router, MessageToast, Constants) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.Home", {
@@ -16,7 +17,7 @@ sap.ui.define([
 			onLoginTap: function (oEvent) {
 				const sUserId = this.getView().byId("uid").getValue();
 				const sPassw = this.getView().byId("pasw").getValue();
-				const oUsersModel = this.getOwnerComponent().getModel("users");
+				const oUsersModel = this.getOwnerComponent().getModel(Constants.model.USERS);
 				const aModelData = oUsersModel.getProperty("/value");
 				if (!sUserId || !sPassw) return MessageToast.show("Rellena ambos campos del formulario");
 				for (var i=0; i < aModelData.length; i++) {

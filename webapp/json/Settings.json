@@ -6,6 +6,6 @@
     
     "axisTitle" : {
         "name" : "Axis Title",
-        "defaultState" : false
+        "defaultState" : true
     }
 }

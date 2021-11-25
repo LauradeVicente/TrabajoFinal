@@ -109,7 +109,7 @@
 												class="panelStyle" 
 												expandable="true" 
 												expanded="true" 
-												headerText="Settings" 
+												headerText="{i18n>graphHeader}"
 												width="auto">
                	 								<content>
                     								<HBox class="settingsHBox">

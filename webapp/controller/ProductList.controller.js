@@ -6,17 +6,18 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"restaurant/finalproject/util/Formatter",
 	"restaurant/finalproject/util/Validator",
-	"sap/ui/core/ValueState"
+	"sap/ui/core/ValueState",
+	"restaurant/finalproject/util/Constants"
 ],
 	
 
-	function (JSONModel, Filter, FilterOperator, Router, Fragment, Formatter, Validator, ValueState) {
+	function (JSONModel, Filter, FilterOperator, Router, Fragment, Formatter, Validator, ValueState, Constants) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.ProductList", {
 
 			onInit: async function () {
-				this.getView().setModel(new JSONModel(), "dialog");
+				this.getView().setModel(new JSONModel(), Constants.model.PRODUCT_DIALOG);
 			},
 
 			onFilterProductName: function (oEvent) {
@@ -32,12 +33,12 @@ sap.ui.define([
 
 			onFilterProductType: function(oEvent) {
 				const aSelectedItems = oEvent.getSource().getSelectedItems();
-				const oModel = this.getOwnerComponent().getModel("products");
+				const oModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);
 				const aOriginalModelData = oModel.getProperty("/value");
 				let aTempModelData = jQuery.extend(true, [], aOriginalModelData);
 
 				if (!aSelectedItems.length) {
-					this.getView().getModel("productsTemp").setProperty("/value", aTempModelData);
+					this.getView().getModel(Constants.model.PRODUCTS_TEMP).setProperty("/value", aTempModelData);
 					return;
 				}
 				aTempModelData = aTempModelData.filter(data => 
@@ -45,12 +46,13 @@ sap.ui.define([
 						oItem.getText() === data.type
 					)
 				);
-				this.getView().getModel("productsTemp").setProperty("/value", aTempModelData);
+				this.getView().getModel(Constants.model.PRODUCTS_TEMP).setProperty("/value", aTempModelData);
 			},
 
 			handlePopoverAddProducts: function () {
 				let oView = this.getView();
-				const oDialogModel = this.getView().getModel("dialog");
+				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
+				const oVendorDialogModel = this.getView().getModel(Constants.model.VENDOR_DIALOG);
 
 				if (!this._oDialog) {
 					Fragment.load({
@@ -65,6 +67,7 @@ sap.ui.define([
 					}.bind(this));
 				} else {
 					oDialogModel.setData({});
+					oVendorDialogModel.setData({});
 					this._oDialog.open();
 				}
 			},
@@ -79,9 +82,9 @@ sap.ui.define([
 			navToDetail: async function (oEvent) {
 				let Router = this.getRouter();
 				let sModelPath = oEvent.getSource().getBindingContextPath();
-				let oProductData = this.getOwnerComponent().getModel("products").getProperty(sModelPath);
+				let oProductData = this.getOwnerComponent().getModel(Constants.model.PRODUCTS).getProperty(sModelPath);
 
-				const aVendorsData = this.getOwnerComponent().getModel("vendors").getProperty("/value");
+				const aVendorsData = this.getOwnerComponent().getModel(Constants.model.VENDORS).getProperty("/value");
 				let aVendorData = aVendorsData.filter(oVendor => oVendor.product === oProductData.name);
 
 				this.getOwnerComponent().setModel(new JSONModel(), "productDetail");
@@ -96,20 +99,26 @@ sap.ui.define([
 			},
 
 			addProduct: function () {
-				const oDialogData = this.getView().getModel("dialog").getProperty("/");
+				const oDialogData = this.getView().getModel(Constants.model.PRODUCT_DIALOG).getProperty("/");
+				const oVendorDialogData = this.getView().getModel(Constants.model.VENDOR_DIALOG).getProperty("/");
 			
 
 				if (!Validator.checkAddProducts(oDialogData, this.getView())) return;
-				const oProductsModel = this.getOwnerComponent().getModel("products");				
-				const oProductsTempModel = this.getView().getModel("productsTemp");
+				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);				
+				const oProductsTempModel = this.getView().getModel(Constants.model.PRODUCTS_TEMP);
 				const aProductsTempData = oProductsTempModel.getProperty("/value");
+				const oVendorsModel = this.getOwnerComponent().getModel(Constants.model.VENDORS);
+				const aVendorsData = oVendorsModel.getProperty("/value");
 
 				aProductsTempData.push(oDialogData);
+				aVendorsData.push(oVendorDialogData);
 
 				oProductsModel.setProperty("/value", aProductsTempData);
 				oProductsTempModel.setProperty("/value", aProductsTempData);
+				oVendorsModel.setProperty("/value", aVendorsData);
 				oProductsModel.refresh(true);
 				oProductsTempModel.refresh(true);
+				oVendorsModel.refresh(true);
 				this.closeAddProductsDialog();
 			},
 
@@ -124,8 +133,8 @@ sap.ui.define([
 			},
 			
 			onDeleteProduct: function (oEvent) {
-				const oProductsModel = this.getOwnerComponent().getModel("productsTemp");
-				let sProductPath = oEvent.getParameter("listItem").getBindingContext("productsTemp").getPath();
+				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
+				let sProductPath = oEvent.getParameter("listItem").getBindingContext(Constants.model.PRODUCTS_TEMP).getPath();
 				oProductsModel.setProperty(sProductPath, undefined);
 				const aProducts = oProductsModel.getProperty("/value");
 				const iProductPath = aProducts.indexOf(undefined);
@@ -133,6 +142,12 @@ sap.ui.define([
 					aProducts.splice(iProductPath, 1);
 				}
 				oProductsModel.refresh(true);
+			},
+
+			openProductsFilters: function (oEvent) {
+				const oIcon = oEvent.getSource();
+				const sIconId = oIcon.getId();
+				let sField;
 			}
         });
 	});
