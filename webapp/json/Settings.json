@@ -1,0 +1,11 @@
+{
+    "dataLabel" : {
+        "name" : "Value Label",
+        "defaultState" : true
+    },
+    
+    "axisTitle" : {
+        "name" : "Axis Title",
+        "defaultState" : false
+    }
+}

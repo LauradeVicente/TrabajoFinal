@@ -95,7 +95,7 @@ sap.ui.define([
 				Router.navTo("ProductDetail");
 			},
 
-			addProduct: function (oEvent) {
+			addProduct: function () {
 				const oDialogData = this.getView().getModel("dialog").getProperty("/");
 			
 

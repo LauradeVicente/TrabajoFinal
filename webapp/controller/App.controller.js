@@ -30,6 +30,7 @@ sap.ui.define([
 				this.getOwnerComponent().setModel(new JSONModel(), "users");
 				this.getOwnerComponent().setModel(new JSONModel(), "products");
 				this.getOwnerComponent().setModel(new JSONModel(), "vendors");
+				this.getOwnerComponent().setModel(new JSONModel(), "settings");
 			},
 
 			loadModels: async function () {
@@ -38,6 +39,7 @@ sap.ui.define([
 				await this.loadProductTypesModel();
 				await this.loadUsersModel();
 				await this.loadVendorsModel();
+				await this.loadSettingsModel();
 			},
 
 			
@@ -67,6 +69,11 @@ sap.ui.define([
 			loadVendorsModel: async function () {
 				const oVendorsModel = this.getOwnerComponent().getModel("vendors");
 				await oVendorsModel.loadData("json/Vendors.json");
+			},
+
+			loadSettingsModel: async function () {
+				const oSettingsModel = this.getOwnerComponent().getModel("settings");
+				await oSettingsModel.loadData("json/Settings.json");
 			}
 
 		});

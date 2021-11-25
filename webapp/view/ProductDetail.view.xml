@@ -102,34 +102,35 @@
 					        	<IconTabFilter key="sales"
 						        			text="{i18n>iconTabFilterSales}"
 						        			icon="sap-icon://hint">
-									<Image src="{productDetail>/image}"
-                                        	width="10rem"
-                                        	height="10rem"/>
-						            	<layout:FixFlex id='chartFixFlex' minFlexSize="250">
+						            	<layout:FixFlex id="chartFixFlex" minFlexSize="250">
         									<layout:fixContent>
-            									<Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="Settings" width="auto">
+            									<Panel id="settingsPanel" 
+													class="panelStyle" 
+													expandable="true" 
+													expanded="true" 
+													headerText="Settings" 
+													width="auto">
                	 									<content>
-                    									<HBox class='settingsHBox'>
-                    										<VBox class='settingsBox'>
-                        										<Label text="{/dataset/name}" design="Bold" class='settingsLabel'></Label>
-                        										<RadioButtonGroup id='datasetRadioGroup'
-                                												buttons="{path: '/dataset/values'}">
-                            										<buttons>
-                                										<RadioButton class='settingsRadio' text="{name}" select="onDatasetSelected"/>
-                            										</buttons>
-                        										</RadioButtonGroup>
-            												</VBox>
-                    										<VBox class='settingsBox'>
-                        										<Label text = '{/dataLabel/name}' design="Bold" class='settingsLabel'></Label>
-                        										<Switch class='settingsSwitch' state="{/dataLabel/defaultState}" change='onDataLabelChanged'>
+                    									<HBox class="settingsHBox">
+                    										<VBox class="settingsBox">
+                        										<Label text = "{settings>/dataLabel/name}" 
+																	design="Bold" 
+																	class="settingsLabel"/>
+                        										<Switch class="settingsSwitch" 
+																	state="{settings>/dataLabel/defaultState}" 
+																	change="onDataLabelChanged">
                             										<layoutData>
                                 										<FlexItemData growFactor="1" />
                             										</layoutData>
                         										</Switch>
                     										</VBox>
-                    										<VBox class='settingsBox'>
-                        										<Label text = '{/axisTitle/name}' design="Bold" class='settingsLabel'></Label>
-                        										<Switch class='settingsSwitch' state="{/axisTitle/defaultState}" change='onAxisTitleChanged'>
+                    										<VBox class="settingsBox">
+                        										<Label text = "{settings>/axisTitle/name}" 
+																	design="Bold" 
+																	class="settingsLabel"/>
+                        										<Switch class="settingsSwitch" 
+																	state="{settings>/axisTitle/defaultState}" 
+																	change="onAxisTitleChanged">
                             										<layoutData>
                                 										<FlexItemData growFactor="1" />
                             										</layoutData>
@@ -143,32 +144,30 @@
             									<viz:Popover id="idPopOver"></viz:Popover>
             									<viz:VizFrame id="idVizFrame" 
 															uiConfig="{applicationSet:'fiori'}"
-                											height='100%' 
+                											height="100%" 
 															width="100%" 
-															vizType='column'>
+															vizType="column">
                 									<viz:dataset>
-                    									<viz.data:FlattenedDataset data="{/milk}">
+                    									<viz.data:FlattenedDataset data="{productDetail>/sales/}">
                         									<viz.data:dimensions>
-                            									<viz.data:DimensionDefinition name="Week"
-                                															value="Week" />
+                            									<viz.data:DimensionDefinition name="Month"
+                                															value="{month}" />
                         									</viz.data:dimensions>
                         									<viz.data:measures>
-                            									<viz.data:MeasureDefinition name="Revenue"
-                                															value="Revenue" />
-                            									<viz.data:MeasureDefinition name="Cost"
-                                															value="Cost" />
+                            									<viz.data:MeasureDefinition name="Sales"
+                                															value="{number}" />
                         									</viz.data:measures>
                     									</viz.data:FlattenedDataset>
                 									</viz:dataset>
                 									<viz:feeds>
-                    									<viz.feeds:FeedItem id='valueAxisFeed' 
+                    									<viz.feeds:FeedItem id="valueAxisFeed" 
 																			uid="valueAxis" 
 																			type="Measure"
-                        													values="Revenue" />
-                    									<viz.feeds:FeedItem id='categoryAxisFeed' 
+                        													values="Sales" />
+                    									<viz.feeds:FeedItem id="categoryAxisFeed" 
 																			uid="categoryAxis" 
 																			type="Dimension"
-                        													values="Week" />
+                        													values="Month" />
                 									</viz:feeds>
             									</viz:VizFrame>
         									</layout:flexContent>

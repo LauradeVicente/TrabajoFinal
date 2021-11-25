@@ -11,8 +11,31 @@ sap.ui.define([
 
 		return Router.extend("restaurant.finalproject.controller.ProductDetail", {
 
+			oVizFrame : null,
+
 			onInit: function () {
-				this.getOwnerComponent().getModel("productsVendor");
+				var oVizFrame  = this.oVizFrame = this.getView().byId("idVizFrame");
+            	oVizFrame.setVizProperties({
+                	plotArea: {
+                    	dataLabel: {
+                        	visible: true
+                    	}
+                	},
+               	 	valueAxis: {
+                    	title: {
+                        	visible: false
+                    	}
+                	},
+                	categoryAxis: {
+                    	title: {
+                        	visible: false
+                    	}
+                	},
+                	title: {
+                    	visible: false,
+                    	text: 'Revenue by City and Store Name'
+                	}
+            	});
 			},
 
 			onGenericTagPress: function (oEvent) {
@@ -42,8 +65,37 @@ sap.ui.define([
 			navToSettings: function () {
 				let Router = this.getRouter();
 				Router.navTo("Settings");
-			}
-	
+			},
+
+        	onDataLabelChanged : function(oEvent){
+            	if (this.oVizFrame){
+                	this.oVizFrame.setVizProperties({
+                    	plotArea: {
+                        	dataLabel: {
+                            	visible: oEvent.getParameter("state")
+                        	}
+                    	}
+                	});
+            	}
+        	},
+
+        	onAxisTitleChanged : function(oEvent){
+            	if (this.oVizFrame){
+                	var state = oEvent.getParameter("state");
+                	this.oVizFrame.setVizProperties({
+                    	valueAxis: {
+                        	title: {
+                            	visible: state
+                        	}
+                    	},
+                    	categoryAxis: {
+                        	title: {
+                            	visible: state
+                        	}
+                    	}
+                	});
+            	}
+        	}
 
         });
     }
