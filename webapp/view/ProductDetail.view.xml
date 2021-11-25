@@ -1,7 +1,6 @@
 <mvc:View
     controllerName="restaurant.finalproject.controller.ProductDetail"
 	xmlns="sap.m"
-	xmlns:f="sap.f"
 	xmlns:form="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
@@ -19,7 +18,6 @@
 						title="{productDetail>/name}"
 						icon="{productDetail>/image}" 
 						iconAlt="{productDetail>/name}"
-						backgroundDesign="Solid"
 						class="sapUiResponsivePadding--header">
 						<attributes>
 							<ObjectAttribute title="{i18n>productType}" 
@@ -33,149 +31,152 @@
 											text="{productDetail>/price_kg}" />
 						</attributes>
 					</ObjectHeader>
-					<HBox>
-                    	<IconTabBar id="iconTabBarDetailView">
-				        	<items>
-					        	<IconTabFilter key="supplier"
-						        			text="{i18n>iconTabFilterSupplier}"
-						        			icon="sap-icon://supplier">
-						            <content>
-										<form:Form id="formDetailView"
-												editable="false">
-											<form:title>
-												<core:Title text="Supplier" />
-											</form:title>
-											<form:layout>
-												<form:ColumnLayout 
-													columnsM="2"
-													columnsL="3"
-													columnsXL="4"
-												/>
-											</form:layout>
-											<form:formContainers>
-												<form:FormContainer title="{i18n>supplierAddressTitle}">
-													<form:formElements>
-														<form:FormElement label="Name">
-															<form:fields>
-																<Text text="{productVendor>/name}" id="nameText"  />
-															</form:fields>
-														</form:FormElement>
-														<form:FormElement label="Street">
-															<form:fields>
-																<Text text="{productVendor>/street}" />
-															</form:fields>
-														</form:FormElement>
-														<form:FormElement label="ZIP Code/City">
-															<form:fields>
-																<Text text="{productVendor>/zip_code} {productVendor>/city}" />
-															</form:fields>
-														</form:FormElement>
-														<form:FormElement label="Country">
-															<form:fields>
-																<Text text="{productVendor>/country}" id="countryText" />
-															</form:fields>
-														</form:FormElement>
-													</form:formElements>
-												</form:FormContainer>
-												<form:FormContainer title="{i18n>supplierContactTitle}">
-													<form:formElements>
-														<form:FormElement label="Email">
-															<form:fields>
-																<Text text="{productVendor>/email}" />
-															</form:fields>
-														</form:FormElement>
-														<form:FormElement label="Telephone">
-															<form:fields>
-																<Text text="{productVendor>/telephone}" />
-															</form:fields>
-														</form:FormElement>
-														<form:FormElement label="Mobile">
-															<form:fields>
-																<Text text="{productVendor>/mobile}" />
-															</form:fields>
-														</form:FormElement>
-													</form:formElements>
-												</form:FormContainer>
-											</form:formContainers>
-										</form:Form>
-									</content>
-					        	</IconTabFilter>
-					        	<IconTabFilter key="sales"
-						        			text="{i18n>iconTabFilterSales}"
-						        			icon="sap-icon://hint">
-						            	<layout:FixFlex id="chartFixFlex" minFlexSize="250">
-        									<layout:fixContent>
-            									<Panel id="settingsPanel" 
-													class="panelStyle" 
-													expandable="true" 
-													expanded="true" 
-													headerText="Settings" 
-													width="auto">
-               	 									<content>
-                    									<HBox class="settingsHBox">
-                    										<VBox class="settingsBox">
-                        										<Label text = "{settings>/dataLabel/name}" 
-																	design="Bold" 
-																	class="settingsLabel"/>
-                        										<Switch class="settingsSwitch" 
-																	state="{settings>/dataLabel/defaultState}" 
-																	change="onDataLabelChanged">
-                            										<layoutData>
-                                										<FlexItemData growFactor="1" />
-                            										</layoutData>
-                        										</Switch>
-                    										</VBox>
-                    										<VBox class="settingsBox">
-                        										<Label text = "{settings>/axisTitle/name}" 
-																	design="Bold" 
-																	class="settingsLabel"/>
-                        										<Switch class="settingsSwitch" 
+                    <IconTabBar id="iconTabBarDetailView" 
+							enableTabReordering="true" 
+							class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+				        <items>
+					        <IconTabFilter key="supplier"
+						        		text="{i18n>iconTabFilterSupplier}"
+						        		icon="sap-icon://supplier">
+						        <content>
+									<form:Form id="formDetailView"
+											editable="false">
+										<form:title>
+											<core:Title text="Supplier" />
+										</form:title>
+										<form:layout>
+											<form:ColumnLayout 
+												columnsM="2"
+												columnsL="3"
+												columnsXL="4"
+											/>
+										</form:layout>
+										<form:formContainers>
+											<form:FormContainer title="{i18n>supplierAddressTitle}">
+												<form:formElements>
+													<form:FormElement label="Name">
+														<form:fields>
+															<Text text="{productVendor>/name}" id="nameText"  />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement label="Street">
+														<form:fields>
+															<Text text="{productVendor>/street}" />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement label="ZIP Code/City">
+														<form:fields>
+															<Text text="{productVendor>/zip_code} {productVendor>/city}" />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement label="Country">
+														<form:fields>
+															<Text text="{productVendor>/country}" id="countryText" />
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+											<form:FormContainer title="{i18n>supplierContactTitle}">
+												<form:formElements>
+													<form:FormElement label="Email">
+														<form:fields>
+															<Text text="{productVendor>/email}" />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement label="Telephone">
+														<form:fields>
+															<Text text="{productVendor>/telephone}" />
+														</form:fields>
+													</form:FormElement>
+													<form:FormElement label="Mobile">
+														<form:fields>
+															<Text text="{productVendor>/mobile}" />
+														</form:fields>
+													</form:FormElement>
+												</form:formElements>
+											</form:FormContainer>
+										</form:formContainers>
+									</form:Form>
+								</content>
+					        </IconTabFilter>
+					        <IconTabFilter key="sales"
+						        		text="{i18n>iconTabFilterSales}"
+						        		icon="sap-icon://hint">
+								<content>
+						            <layout:FixFlex id="chartFixFlex" minFlexSize="250">
+        								<layout:fixContent>
+            								<Panel id="settingsPanel" 
+												class="panelStyle" 
+												expandable="true" 
+												expanded="true" 
+												headerText="Settings" 
+												width="auto">
+               	 								<content>
+                    								<HBox class="settingsHBox">
+                    									<VBox class="settingsBox">
+                        									<Label text = "{settings>/dataLabel/name}" 
+																design="Bold" 
+																class="settingsLabel"/>
+                        									<Switch class="settingsSwitch" 
+																state="{settings>/dataLabel/defaultState}" 
+																change="onDataLabelChanged">
+                            									<layoutData>
+                                									<FlexItemData growFactor="1" />
+                            									</layoutData>
+                        									</Switch>
+                    									</VBox>
+                    									<VBox class="settingsBox">
+                        									<Label text = "{settings>/axisTitle/name}" 
+																design="Bold" 
+																class="settingsLabel"/>
+                        									<Switch class="settingsSwitch" 
 																	state="{settings>/axisTitle/defaultState}" 
 																	change="onAxisTitleChanged">
-                            										<layoutData>
-                                										<FlexItemData growFactor="1" />
-                            										</layoutData>
-                        										</Switch>
-                    										</VBox>
-                    									</HBox>
-                									</content>
-            									</Panel>
-											</layout:fixContent>
-        									<layout:flexContent>
-            									<viz:Popover id="idPopOver"></viz:Popover>
-            									<viz:VizFrame id="idVizFrame" 
-															uiConfig="{applicationSet:'fiori'}"
-                											height="100%" 
-															width="100%" 
-															vizType="column">
-                									<viz:dataset>
-                    									<viz.data:FlattenedDataset data="{productDetail>/sales/}">
-                        									<viz.data:dimensions>
-                            									<viz.data:DimensionDefinition name="Month"
-                                															value="{month}" />
-                        									</viz.data:dimensions>
-                        									<viz.data:measures>
-                            									<viz.data:MeasureDefinition name="Sales"
-                                															value="{number}" />
-                        									</viz.data:measures>
-                    									</viz.data:FlattenedDataset>
-                									</viz:dataset>
-                									<viz:feeds>
-                    									<viz.feeds:FeedItem id="valueAxisFeed" 
-																			uid="valueAxis" 
-																			type="Measure"
-                        													values="Sales" />
-                    									<viz.feeds:FeedItem id="categoryAxisFeed" 
-																			uid="categoryAxis" 
-																			type="Dimension"
-                        													values="Month" />
-                									</viz:feeds>
-            									</viz:VizFrame>
-        									</layout:flexContent>
-    									</layout:FixFlex>
-					        	</IconTabFilter>
-				        	</items>
-			        	</IconTabBar>
+                            									<layoutData>
+                                									<FlexItemData growFactor="1" />
+                            									</layoutData>
+                        									</Switch>
+                    									</VBox>
+                    								</HBox>
+                								</content>
+            								</Panel>
+										</layout:fixContent>
+        								<layout:flexContent>
+            								<viz:Popover id="idPopOver"></viz:Popover>
+            								<viz:VizFrame id="idVizFrame" 
+														uiConfig="{applicationSet:'fiori'}"
+                										height="100%" 
+														width="100%" 
+														vizType="column">
+                								<viz:dataset>
+                    								<viz.data:FlattenedDataset data="{productDetail>/sales/}">
+                        								<viz.data:dimensions>
+                            								<viz.data:DimensionDefinition name="Month"
+                                														value="{month}" />
+                        								</viz.data:dimensions>
+                        								<viz.data:measures>
+                            								<viz.data:MeasureDefinition name="Sales"
+                                														value="{number}" />
+                        								</viz.data:measures>
+                    								</viz.data:FlattenedDataset>
+                								</viz:dataset>
+                								<viz:feeds>
+                    								<viz.feeds:FeedItem id="valueAxisFeed" 
+																		uid="valueAxis" 
+																		type="Measure"
+                        												values="Sales" />
+                    								<viz.feeds:FeedItem id="categoryAxisFeed" 
+																		uid="categoryAxis" 
+																		type="Dimension"
+                        												values="Month" />
+                								</viz:feeds>
+            								</viz:VizFrame>
+        								</layout:flexContent>
+    								</layout:FixFlex>
+								</content>
+					        </IconTabFilter>
+				        </items>
+			        </IconTabBar>
 						<!--<tnt:SideNavigation id="sideNavigation" expanded="false">
 							<tnt:NavigationList>
 								<tnt:NavigationListItem icon="sap-icon://home" select="navToHome"/>
@@ -186,7 +187,6 @@
 								</tnt:NavigationList>
 							</tnt:fixedItem>
 						</tnt:SideNavigation>-->
-					</HBox>
 				</content>
 				<footer>
 					<Bar>
