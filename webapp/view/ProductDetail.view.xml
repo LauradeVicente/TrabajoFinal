@@ -175,7 +175,7 @@
 					        	</IconTabFilter>
 				        	</items>
 			        	</IconTabBar>
-						<tnt:SideNavigation id="sideNavigation" selectedKey="subItem3" expanded="false">
+						<tnt:SideNavigation id="sideNavigation" expanded="false">
 							<tnt:NavigationList>
 								<tnt:NavigationListItem icon="sap-icon://home" select="navToHome"/>
 							</tnt:NavigationList>
