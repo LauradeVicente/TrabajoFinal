@@ -36,37 +36,37 @@
 						<columns>
 							<Column>
 								<layout:HorizontalLayout>
-									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<core:Icon id="name" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productName}"/>
 								</layout:HorizontalLayout>
 							</Column>
 							<Column>
 								<layout:HorizontalLayout>
-									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<core:Icon id="quantity" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productQuantity}"/>
 								</layout:HorizontalLayout>
 							</Column>
 							<Column>
 								<layout:HorizontalLayout>
-									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<core:Icon id="supplier" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productSupplier}"/>
 								</layout:HorizontalLayout>
 							</Column>
 							<Column>
 								<layout:HorizontalLayout>
-									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<core:Icon id="price_kg" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productPriceKg}"/>
 								</layout:HorizontalLayout>
 							</Column>
 							<Column>
 								<layout:HorizontalLayout>
-									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<core:Icon id="caducity" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productCaducity}"/>
 								</layout:HorizontalLayout>
 							</Column>
                             <Column>
 								<layout:HorizontalLayout>
-									<core:Icon src="sap-icon://filter" press="openProductsFilters"/>
+									<core:Icon id="type" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productType}"/>
 								</layout:HorizontalLayout>
 							</Column>

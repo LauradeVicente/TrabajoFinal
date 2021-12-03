@@ -26,7 +26,7 @@
                             <Input id="product_type" 
                                 placeholder="{i18n>productType}"
                                 showSuggestion="true"
-                                suggest=".onSuggest"
+                                suggest="onInputSuggest"
                                 suggestionItems="{productTypes>/}"
                                 value="{dialog>/type}"
                                 required="true">
@@ -95,7 +95,8 @@
                                 type="Tel" 
                                 placeholder="{i18n>vendorTelephone}" 
                                 value="{vendorDialog>/telephone}" 
-                                required="true"/>
+                                required="true"
+                                maxLength="9"/>
                         </HBox>
                         <HBox>
                             <Label text="{i18n>vendorMobile}" labelFor="vendor_mobile"/>
@@ -103,7 +104,8 @@
                                 type="Tel" 
                                 placeholder="{i18n>vendorMobile}" 
                                 value="{vendorDialog>/mobile}" 
-                                required="true"/>
+                                required="true"
+                                maxLength="9"/>
                             <Label text="{i18n>vendorEmail}" labelFor="vendor_email"/>
                             <Input id="vendor_email" 
                                 type="Email" 
@@ -112,7 +114,8 @@
                                 required="true"/>
                             <Label text="{i18n>vendorZipCode}" labelFor="vendor_zipCode"/>
                             <Input id="vendor_zipCode"  
-                                type="Number" 
+                                type="Tel"
+                                maxLength="5"
                                 value="{vendorDialog>/zipCode}" 
                                 placeholder="{i18n>vendorZipCode}" 
                                 required="true"/>
@@ -132,8 +135,7 @@
             <Button width="12rem" 
                     text="{i18n>addProductPopoverButton}" 
                     type="Emphasized" 
-                    press="addProduct"
-                    enabled=""/>
+                    press="addProduct"/>
         </endButton>           
     </Dialog>
 </core:FragmentDefinition>

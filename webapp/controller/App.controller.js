@@ -17,11 +17,11 @@ sap.ui.define([
 			},
 
 			initRouter: function () {
-				const Router = this.getRouter();
-				if (Router._bIsInitialized) {
-					Router.navTo("ProductList");
+				const oRouter = this.getRouter();
+				if (oRouter._bIsInitialized) {
+					oRouter.navTo("ProductList");
 				} else {
-					Router.initialize();
+					oRouter.initialize();
 				}
 			},
 			

@@ -1,5 +1,0 @@
-<core:FragmentDefinition xmlns="sap.m" 
-    controllerName="restaurant.finalproject.controller.ProductList"
-    xmlns:core="sap.ui.core">
-        
-</core:FragmentDefinition>

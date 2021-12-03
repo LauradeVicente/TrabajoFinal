@@ -1,53 +1,106 @@
 sap.ui.define([
     "sap/ui/core/ValueState",
+    "restaurant/finalproject/util/Constants"
 ],
-function (ValueState) {
+function (ValueState, Constants) {
     "use strict";
 
     const Validator = {
 
-        checkAddProducts: function (oAddProductsData, oView) {
-            if (!oAddProductsData.name) {
-                oView.byId("product_name").setValueState(ValueState.Error);
+        checkAddProducts: function (oProductData, oVendorData, oView) {
+
+            //Product data
+            if (!oProductData.name) {
+                oView.byId(Constants.ids.PRODUCT_NAME).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_name").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_NAME).setValueState(ValueState.Success);
             }
-            if (!oAddProductsData.supplier) {
-                oView.byId("product_supplier").setValueState(ValueState.Error);
+            if (!oProductData.supplier) {
+                oView.byId(Constants.ids.PRODUCT_SUPPLIER).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_supplier").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_SUPPLIER).setValueState(ValueState.Success);
             }
-            if (!oAddProductsData.type){
-                oView.byId("product_type").setValueState(ValueState.Error);
+            if (!oProductData.type){
+                oView.byId(Constants.ids.PRODUCT_TYPE).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_type").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_TYPE).setValueState(ValueState.Success);
             }
-            if (!oAddProductsData.price_kg) {
-                oView.byId("product_price").setValueState(ValueState.Error);
+            if (!oProductData.price_kg) {
+                oView.byId(Constants.ids.PRODUCT_PRICE).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_price").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_PRICE).setValueState(ValueState.Success);
             }
-            if (!oAddProductsData.quantity) {
-                oView.byId("product_quant").setValueState(ValueState.Error);
+            if (!oProductData.quantity) {
+                oView.byId(Constants.ids.PRODUCT_QUANT).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_quant").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_QUANT).setValueState(ValueState.Success);
             }
-            if (!oAddProductsData.image) {
-                oView.byId("product_image").setValueState(ValueState.Error);
+            if (!oProductData.image) {
+                oView.byId(Constants.ids.PRODUCT_IMAGE).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_image").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_IMAGE).setValueState(ValueState.Success);
             }
-            if (!oAddProductsData.caducity) {
-                oView.byId("product_cad").setValueState(ValueState.Error);
+            if (!oProductData.caducity) {
+                oView.byId(Constants.ids.PRODUCT_CAD).setValueState(ValueState.Error);
                 return;
             } else {
-                oView.byId("product_cad").setValueState(ValueState.Success);
+                oView.byId(Constants.ids.PRODUCT_CAD).setValueState(ValueState.Success);
+            }
+
+            //Vendor data
+            if (!oVendorData.name) {
+                oView.byId(Constants.ids.VENDOR_NAME).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_NAME).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.city) {
+                oView.byId(Constants.ids.VENDOR_CITY).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_CITY).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.country) {
+                oView.byId(Constants.ids.VENDOR_COUNTRY).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_COUNTRY).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.street) {
+                oView.byId(Constants.ids.VENDOR_STREET).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_STREET).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.telephone) {
+                oView.byId(Constants.ids.VENDOR_TELEPHONE).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_TELEPHONE).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.mobile) {
+                oView.byId(Constants.ids.VENDOR_MOBILE).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_MOBILE).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.email) {
+                oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Success);
+            }
+            if (!oVendorData.zipCode) {
+                oView.byId(Constants.ids.VENDOR_ZIPCODE).setValueState(ValueState.Error);
+                return;
+            } else {
+                oView.byId(Constants.ids.VENDOR_ZIPCODE).setValueState(ValueState.Success);
             }
             return true;
         }

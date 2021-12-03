@@ -6,22 +6,27 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"restaurant/finalproject/util/Formatter",
 	"restaurant/finalproject/util/Validator",
-	"sap/ui/core/ValueState",
 	"restaurant/finalproject/util/Constants"
 ],
 	
 
-	function (JSONModel, Filter, FilterOperator, Router, Fragment, Formatter, Validator, ValueState, Constants) {
+	function (JSONModel, Filter, FilterOperator, Router, Fragment, Formatter, Validator, Constants) {
 		"use strict";
 
 		return Router.extend("restaurant.finalproject.controller.ProductList", {
 
 			onInit: async function () {
+				await this.initModels();
+			},
+
+			initModels: function () {
 				this.getView().setModel(new JSONModel(), Constants.model.PRODUCT_DIALOG);
+				this.getView().setModel(new JSONModel(), Constants.model.VENDOR_DIALOG);
+				this.getView().setModel(new JSONModel(), Constants.model.SEARCHFIELD_VALUES);
 			},
 
 			onFilterProductName: function (oEvent) {
-				var aFilter = [],
+				let aFilter = [],
 				sQuery = oEvent.getParameter("query"),
 				oTable = this.getView().byId("idProductsTable"),
 				oBinding = oTable.getBinding("items");
@@ -53,6 +58,7 @@ sap.ui.define([
 				let oView = this.getView();
 				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
 				const oVendorDialogModel = this.getView().getModel(Constants.model.VENDOR_DIALOG);
+				const settingsModel = this.getOwnerComponent().getModel("settings");
 
 				if (!this._oDialog) {
 					Fragment.load({
@@ -63,11 +69,14 @@ sap.ui.define([
 						this._oDialog = oDialog;
 						oView.addDependent(this._oDialog);
 						oDialogModel.setData({});
+						oVendorDialogModel.setData({});
+						settingsModel.setProperty("/addEnable", false);
 						this._oDialog.open();
 					}.bind(this));
 				} else {
 					oDialogModel.setData({});
 					oVendorDialogModel.setData({});
+					settingsModel.setProperty("/addEnable", false);
 					this._oDialog.open();
 				}
 			},
@@ -80,7 +89,7 @@ sap.ui.define([
 			},
 
 			navToDetail: async function (oEvent) {
-				let Router = this.getRouter();
+				let oRouter = this.getRouter();
 				let sModelPath = oEvent.getSource().getBindingContextPath();
 				let oProductData = this.getOwnerComponent().getModel(Constants.model.PRODUCTS).getProperty(sModelPath);
 
@@ -95,15 +104,14 @@ sap.ui.define([
 				await oDetailModel.setData(oProductData);
 				await oVendorModel.setData(aVendorData[0]);
 
-				Router.navTo("ProductDetail");
+				oRouter.navTo("ProductDetail");
 			},
 
 			addProduct: function () {
 				const oDialogData = this.getView().getModel(Constants.model.PRODUCT_DIALOG).getProperty("/");
 				const oVendorDialogData = this.getView().getModel(Constants.model.VENDOR_DIALOG).getProperty("/");
 			
-
-				if (!Validator.checkAddProducts(oDialogData, this.getView())) return;
+				if (!Validator.checkAddProducts(oDialogData, oVendorDialogData, this.getView())) return;
 				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);				
 				const oProductsTempModel = this.getView().getModel(Constants.model.PRODUCTS_TEMP);
 				const aProductsTempData = oProductsTempModel.getProperty("/value");
@@ -122,14 +130,17 @@ sap.ui.define([
 				this.closeAddProductsDialog();
 			},
 
-			onSuggest: function (oEvent) {
+			onInputSuggest: function (oEvent) {
 				let sTerm = oEvent.getParameter("suggestValue");
-				var aFilters = [];
+				let aFilters = [];
 				if (sTerm) {
 					aFilters.push(new Filter("type", FilterOperator.StartsWith, sTerm));
 				}
-
 				oEvent.getSource().getBinding("suggestionItems").filter(aFilters);
+			},
+
+			onSearchfieldSuggest: function (oEvent) {
+				oEvent.getSource().suggest();
 			},
 			
 			onDeleteProduct: function (oEvent) {
@@ -146,8 +157,35 @@ sap.ui.define([
 
 			openProductsFilters: function (oEvent) {
 				const oIcon = oEvent.getSource();
-				const sIconId = oIcon.getId();
-				let sField;
+				let oView = this.getView();
+				const sIconID = oIcon.getId();
+				if (!this.oFilterPopover) {
+					Fragment.load({
+						name: "restaurant.finalproject.fragment.filters.ProductsFilter",
+						controller: this
+					}).then(function (oFilterPopover) {
+						this.oFilterPopover = oFilterPopover;
+						oView.addDependent(this.oFilterPopover);
+						this.setSearchfieldValues(sIconID);
+						this.oFilterPopover.openBy(oIcon);
+					}.bind(this));
+				} else {
+					this.setSearchfieldValues(sIconID);
+					this.oFilterPopover.openBy(oIcon);
+				}
+			},
+
+			setSearchfieldValues: function (sIconID) {
+				const sID = sIconID.split("--")[1];
+				const oSearchfieldValuesModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
+				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
+				const aProductsData = oProductsModel.getProperty("/value");
+				const aValues = [];
+				
+				for (let i=0; i < aProductsData.length; i++) {
+					aValues.push({"description": aProductsData[i][sID]});
+				}
+				oSearchfieldValuesModel.setProperty("/", aValues);
 			}
         });
 	});

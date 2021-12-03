@@ -30,8 +30,8 @@ sap.ui.define([
 			},
 
 			navToProductList: function (oEvent) {
-                let Router = this.getRouter();
-                Router.navTo("ProductList");
+                let oRouter = this.getRouter();
+                oRouter.navTo("ProductList");
             }
         });
     });
