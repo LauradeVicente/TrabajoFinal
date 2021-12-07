@@ -13,18 +13,23 @@
 			<Page id="productListView" title="{i18n>title}">
 				<tnt:ToolHeader>
 					<SearchField placeholder="{i18n>productNameFilter}"
-								width="40%"
+								width="30%"
 								search="onFilterProductName"/>
 					<MultiComboBox id="productsMCB"
 								placeholder="{i18n>productTypeFilter}"
-								width="40%"
+								width="30%"
 								selectionChange="onFilterProductType"
 								items="{path: 'productTypes>/'}">
 									<core:Item key="{productTypes>id}" text="{productTypes>type}"/>
 					</MultiComboBox>
 					<Button text="{i18n>addProductButton}" 
-							icon="sap-icon://add-product"
-							press="handlePopoverAddProducts"/>
+							tooltip="{i18n>addProductTooltip}"
+							press="handlePopoverAddProducts"
+							icon="sap-icon://add-product"/>
+					<Button text="{i18n>clearFiltersButton}" 
+							tooltip="{i18n>clearFiltersTooltip}"
+                            press="clearProductListFilters" 
+                            icon="sap-icon://clear-filter"/>
 				</tnt:ToolHeader>
 				<HBox>
 					<Table id="idProductsTable"

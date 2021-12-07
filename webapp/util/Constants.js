@@ -26,6 +26,7 @@ sap.ui.define("restaurant.finalproject.util.Constants", [], function () {
             PRODUCT_QUANT: "product_quant",
             PRODUCT_IMAGE: "product_image",
             PRODUCT_CAD: "product_cad",
+            PRODUCTS_FILTER_POPOVER: "products_filter_popover",
 
             //Vendors data
             VENDOR_NAME: "vendor_name",

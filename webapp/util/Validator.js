@@ -9,100 +9,67 @@ function (ValueState, Constants) {
 
         checkAddProducts: function (oProductData, oVendorData, oView) {
 
+            let bError = true;
             //Product data
             if (!oProductData.name) {
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_NAME).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_NAME).setValueState(ValueState.Success);
             }
             if (!oProductData.supplier) {
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_SUPPLIER).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_SUPPLIER).setValueState(ValueState.Success);
             }
             if (!oProductData.type){
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_TYPE).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_TYPE).setValueState(ValueState.Success);
             }
             if (!oProductData.price_kg) {
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_PRICE).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_PRICE).setValueState(ValueState.Success);
             }
             if (!oProductData.quantity) {
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_QUANT).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_QUANT).setValueState(ValueState.Success);
             }
             if (!oProductData.image) {
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_IMAGE).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_IMAGE).setValueState(ValueState.Success);
             }
             if (!oProductData.caducity) {
+                bError = false;
                 oView.byId(Constants.ids.PRODUCT_CAD).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.PRODUCT_CAD).setValueState(ValueState.Success);
             }
 
             //Vendor data
             if (!oVendorData.name) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_NAME).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_NAME).setValueState(ValueState.Success);
             }
             if (!oVendorData.city) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_CITY).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_CITY).setValueState(ValueState.Success);
             }
             if (!oVendorData.country) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_COUNTRY).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_COUNTRY).setValueState(ValueState.Success);
             }
             if (!oVendorData.street) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_STREET).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_STREET).setValueState(ValueState.Success);
-            }
-            if (!oVendorData.telephone) {
-                oView.byId(Constants.ids.VENDOR_TELEPHONE).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_TELEPHONE).setValueState(ValueState.Success);
             }
             if (!oVendorData.mobile) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_MOBILE).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_MOBILE).setValueState(ValueState.Success);
             }
             if (!oVendorData.email) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Success);
             }
             if (!oVendorData.zipCode) {
+                bError = false;
                 oView.byId(Constants.ids.VENDOR_ZIPCODE).setValueState(ValueState.Error);
-                return;
-            } else {
-                oView.byId(Constants.ids.VENDOR_ZIPCODE).setValueState(ValueState.Success);
             }
-            return true;
+            return bError;
         }
 
     }
