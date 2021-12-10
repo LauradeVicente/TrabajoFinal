@@ -1,6 +1,8 @@
-sap.ui.define([],
+sap.ui.define([
+    "restaurant/finalproject/util/Constants"
+],
 
-    function () {
+    function (Constants) {
         "use strict";
 
         return {
@@ -15,6 +17,12 @@ sap.ui.define([],
                 iMonth < 10 ? iMonth = iMonth.toString().padStart(2, 0) : "";
 
                 return iDay + "/" + iMonth + "/" + iYear;
+            },
+
+            getSearchfieldValue: function (oProduct) {
+                const oSearchfieldValuesModel = appScope.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
+                const sColumnID = oSearchfieldValuesModel.getProperty("/column");
+                return oProduct[sColumnID];
             }
 
         }

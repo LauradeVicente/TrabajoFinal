@@ -13,7 +13,11 @@
 		<App>
 			<Page id="detailView" title="{i18n>title}">
 				<content>
-				<core:Icon src="sap-icon://home" press="navToHome" size="2rem"/>
+				<core:Icon src="sap-icon://home" 
+						press="navToHome" 
+						tooltip="{i18n>homeIconTooltip}" 
+						alt="{i18n>homeIconTooltip}" 
+						size="2rem"/>
 					<ObjectHeader
 						title="{productDetail>/name}"
 						icon="{productDetail>/image}" 

@@ -8,6 +8,8 @@ sap.ui.define([
 	function (JSONModel, Router, Constants) {
 		"use strict";
 
+		window.appScope = undefined;
+
 		return Router.extend("restaurant.finalproject.controller.App", {
 
 			onInit: async function () {
@@ -54,7 +56,6 @@ sap.ui.define([
                 const oModelProducts = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);
 				const aProductsData = jQuery.extend(true, [], oModelProducts.getProperty("/value"));
 				oModelProductsTemp.setProperty("/value", aProductsData);
-				
 			},
 
 			loadProductTypesModel: async function () {

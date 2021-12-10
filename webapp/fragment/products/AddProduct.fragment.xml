@@ -12,61 +12,81 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <Label text="{i18n>productName}" labelFor="product_name"/>
-                            <Input id="product_name" 
-                                placeholder="{i18n>productName}"
-                                liveChange="onInputChange" 
-                                value="{dialog>/name}" 
-                                required="true"/>
-                            <Label text="{i18n>productSupplier}" labelFor="product_supplier"/>
-                            <Input id="product_supplier" 
-                                placeholder="{i18n>productSupplier}" 
-                                liveChange="onInputChange"
-                                value="{dialog>/supplier}" 
-                                required="true"/>
-                            <Label text="{i18n>productType}" labelFor="product_type"/>
-                            <Input id="product_type" 
-                                placeholder="{i18n>productType}"
-                                liveChange="onInputChange"
-                                showSuggestion="true"
-                                suggest="onInputSuggest"
-                                suggestionItems="{productTypes>/}"
-                                value="{dialog>/type}"
-                                required="true">
-                                <suggestionItems>  
-                                    <core:Item text="{productTypes>type}"/>
-                                </suggestionItems>
-                            </Input>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productName}" labelFor="product_name"/>
+                                <Input id="product_name" 
+                                    placeholder="{i18n>productName}"
+                                    liveChange="onInputChange" 
+                                    value="{dialog>/name}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productSupplier}" labelFor="product_supplier"/>
+                                <Input id="product_supplier" 
+                                    placeholder="{i18n>productSupplier}" 
+                                    liveChange="onInputChange"
+                                    value="{dialog>/supplier}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productType}" labelFor="product_type"/>
+                                <Input id="product_type" 
+                                    placeholder="{i18n>productType}"
+                                    liveChange="onInputChange"
+                                    showSuggestion="true"
+                                    suggest="onInputSuggest"
+                                    suggestionItems="{productTypes>/}"
+                                    value="{dialog>/type}"
+                                    required="true">
+                                    <suggestionItems>  
+                                        <core:Item text="{productTypes>type}"/>
+                                    </suggestionItems>
+                                </Input>
+                            </VBox>
                         </HBox>
-                        <HBox>
-                            <Label text="{i18n>productPriceKg}" labelFor="product_price"/>
-                            <Input id="product_price" 
-                                type="Number" 
-                                placeholder="{i18n>productPriceKg}"
-                                liveChange="onInputChange" 
-                                value="{dialog>/price_kg}" 
-                                required="true"/>
-                            <Label text="{i18n>productQuantity}" labelFor="product_quant"/>
-                            <Input id="product_quant" 
-                                type="Number" 
-                                liveChange="onInputChange"
-                                placeholder="{i18n>productQuantity}" 
-                                value="{dialog>/quantity}" 
-                                required="true"/>
+                        <HBox fitContainer="true" 
+                            justifyContent="Center" 
+                            alignItems="Center" 
+                            alignContent="Center">
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productPriceKg}" labelFor="product_price"/>
+                                <Input id="product_price" 
+                                    type="Number" 
+                                    placeholder="{i18n>productPriceKg}"
+                                    liveChange="onInputChange" 
+                                    value="{dialog>/price_kg}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productQuantity}" labelFor="product_quant"/>
+                                <Input id="product_quant" 
+                                    type="Number" 
+                                    liveChange="onInputChange"
+                                    placeholder="{i18n>productQuantity}" 
+                                    value="{dialog>/quantity}" 
+                                    required="true"/>
+                            </VBox>
                         </HBox>
-                        <HBox>
-                            <Label text="{i18n>productImageUrl}" labelFor="product_image"/>
-                            <Input id="product_image" 
-                                type="Url" 
-                                liveChange="onInputChange"
-                                placeholder="{i18n>productImageUrl}" 
-                                value="{dialog>/image}" 
-                                required="true"/>
-                            <Label text="{i18n>productCaducity}" labelFor="product_cad"/>
-                            <DatePicker id="product_cad" 
-                                        value="{dialog>/caducity}" 
-                                        displayFormat="MM/dd/yyyy" 
-                                        required="true"/>
+                        <HBox fitContainer="true" 
+                            justifyContent="Center" 
+                            alignItems="Center" 
+                            alignContent="Center">
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productImageUrl}" labelFor="product_image"/>
+                                <Input id="product_image" 
+                                    type="Url" 
+                                    liveChange="onInputChange"
+                                    placeholder="{i18n>productImageUrl}" 
+                                    value="{dialog>/image}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>productCaducity}" labelFor="product_cad"/>
+                                <DatePicker id="product_cad" 
+                                            value="{dialog>/caducity}" 
+                                            displayFormat="MM/dd/yyyy" 
+                                            required="true"/>
+                            </VBox>
                         </HBox>
                     </IconTabFilter>
                     <IconTabFilter key="supplier_info" text="{i18n>iconTabFilterAddSupplier}">
@@ -74,63 +94,85 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <Label text="{i18n>vendorName}" labelFor="vendor_name"/>
-                            <Input id="vendor_name" 
-                                placeholder="{i18n>vendorName}" 
-                                liveChange="onInputChange"
-                                value="{vendorDialog>/name}" 
-                                required="true"/>
-                            <Label text="{i18n>vendorCity}" labelFor="vendor_city"/>
-                            <Input id="vendor_city" 
-                                placeholder="{i18n>vendorCity}" 
-                                liveChange="onInputChange"
-                                value="{vendorDialog>/city}" 
-                                required="true"/>
-                            <Label text="{i18n>vendorCountry}" labelFor="vendor_country"/>
-                            <Input id="vendor_country" 
-                                placeholder="{i18n>vendorCountry}"
-                                liveChange="onInputChange"
-                                value="{vendorDialog>/country}"
-                                required="true"/>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorName}" labelFor="vendor_name"/>
+                                <Input id="vendor_name" 
+                                    placeholder="{i18n>vendorName}" 
+                                    liveChange="onInputChange"
+                                    value="{vendorDialog>/name}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorCity}" labelFor="vendor_city"/>
+                                <Input id="vendor_city" 
+                                    placeholder="{i18n>vendorCity}" 
+                                    liveChange="onInputChange"
+                                    value="{vendorDialog>/city}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorCountry}" labelFor="vendor_country"/>
+                                <Input id="vendor_country" 
+                                    placeholder="{i18n>vendorCountry}"
+                                    liveChange="onInputChange"
+                                    value="{vendorDialog>/country}"
+                                    required="true"/>
+                            </VBox>
                         </HBox>
-                        <HBox>
-                            <Label text="{i18n>vendorStreet}" labelFor="vendor_street"/>
-                            <Input id="vendor_street" 
-                                placeholder="{i18n>vendorStreet}"
-                                liveChange="onInputChange" 
-                                value="{vendorDialog>/street}" 
-                                required="true"/>
-                            <Label text="{i18n>vendorTelephone}" labelFor="vendor_telephone"/>
-                            <Input id="vendor_telephone" 
-                                type="Tel" 
-                                placeholder="{i18n>vendorTelephone}"
-                                value="{vendorDialog>/telephone}" 
-                                maxLength="9"/>
+                        <HBox fitContainer="true" 
+                            justifyContent="Center" 
+                            alignItems="Center" 
+                            alignContent="Center">
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorStreet}" labelFor="vendor_street"/>
+                                <Input id="vendor_street" 
+                                    placeholder="{i18n>vendorStreet}"
+                                    liveChange="onInputChange" 
+                                    value="{vendorDialog>/street}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorTelephone}" labelFor="vendor_telephone"/>
+                                <Input id="vendor_telephone" 
+                                    type="Tel" 
+                                    placeholder="{i18n>vendorTelephone}"
+                                    value="{vendorDialog>/telephone}" 
+                                    maxLength="9"/>
+                            </VBox>
                         </HBox>
-                        <HBox>
-                            <Label text="{i18n>vendorMobile}" labelFor="vendor_mobile"/>
-                            <Input id="vendor_mobile" 
-                                type="Tel" 
-                                placeholder="{i18n>vendorMobile}"
-                                liveChange="onInputChange" 
-                                value="{vendorDialog>/mobile}" 
-                                required="true"
-                                maxLength="9"/>
-                            <Label text="{i18n>vendorEmail}" labelFor="vendor_email"/>
-                            <Input id="vendor_email" 
-                                type="Email"
-                                liveChange="onInputChange" 
-                                value="{vendorDialog>/email}" 
-                                placeholder="{i18n>vendorEmail}" 
-                                required="true"/>
-                            <Label text="{i18n>vendorZipCode}" labelFor="vendor_zipCode"/>
-                            <Input id="vendor_zipCode"  
-                                type="Tel"
-                                maxLength="5"
-                                liveChange="onInputChange"
-                                value="{vendorDialog>/zipCode}" 
-                                placeholder="{i18n>vendorZipCode}" 
-                                required="true"/>
+                        <HBox fitContainer="true" 
+                            justifyContent="Center" 
+                            alignItems="Center" 
+                            alignContent="Center">
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorMobile}" labelFor="vendor_mobile"/>
+                                <Input id="vendor_mobile" 
+                                    type="Tel" 
+                                    placeholder="{i18n>vendorMobile}"
+                                    liveChange="onInputChange" 
+                                    value="{vendorDialog>/mobile}" 
+                                    required="true"
+                                    maxLength="9"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorEmail}" labelFor="vendor_email"/>
+                                <Input id="vendor_email" 
+                                    type="Email"
+                                    liveChange="onInputChange" 
+                                    value="{vendorDialog>/email}" 
+                                    placeholder="{i18n>vendorEmail}" 
+                                    required="true"/>
+                            </VBox>
+                            <VBox alignContent="Center" alignItems="Left">
+                                <Label text="{i18n>vendorZipCode}" labelFor="vendor_zipCode"/>
+                                <Input id="vendor_zipCode"  
+                                    type="Tel"
+                                    maxLength="5"
+                                    liveChange="onInputChange"
+                                    value="{vendorDialog>/zipCode}" 
+                                    placeholder="{i18n>vendorZipCode}" 
+                                    required="true"/>
+                            </VBox>
                         </HBox>
                     </IconTabFilter>
                     </items>

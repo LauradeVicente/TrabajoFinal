@@ -65,6 +65,7 @@ sap.ui.define([
                             oXhr.respond(iErrCode, { "Content-Type": "text/plain;charset=utf-8" }, sMessage);
                         };
                     };
+                    oMockServer.attachAfter("GET", fnCustom, "Meetups");
 
                     // simulate metadata errors
                     if (oOptions.metadataError || oUriParameters.get("metadataError")) {

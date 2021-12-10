@@ -10,7 +10,8 @@
                         suggest="onSearchfieldSuggest" 
                         suggestionItems="{searchfieldValuesModel>/}"
                         search="onSearchfieldFilter">   
-                <SuggestionItem text="{searchfieldValuesModel>description}"/>  
+                <SuggestionItem text="{path: 'searchfieldValuesModel>', 
+                                formatter: 'restaurant.finalproject.util.Formatter.getSearchfieldValue'}"/>  
             </SearchField>
         </HBox>
     </Popover>

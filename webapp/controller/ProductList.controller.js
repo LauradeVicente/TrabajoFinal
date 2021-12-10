@@ -19,13 +19,22 @@ sap.ui.define([
 		return Router.extend("restaurant.finalproject.controller.ProductList", {
 
 			onInit: async function () {
+				appScope = this;
 				await this.initModels();
+				this.loadSearchfieldValues();
 			},
 
 			initModels: function () {
 				this.getView().setModel(new JSONModel(), Constants.model.PRODUCT_DIALOG);
 				this.getView().setModel(new JSONModel(), Constants.model.VENDOR_DIALOG);
 				this.getView().setModel(new JSONModel(), Constants.model.SEARCHFIELD_VALUES);
+			},
+
+			loadSearchfieldValues: function () {
+				const oModelProductsTemp = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
+				const aProductsData = oModelProductsTemp.getProperty("/value");
+				const oSearchfieldModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
+				oSearchfieldModel.setProperty("/", aProductsData);
 			},
 
 			//FILTRO POR NOMBRE
@@ -171,6 +180,7 @@ sap.ui.define([
 				const oIcon = oEvent.getSource();
 				let oView = this.getView();
 				const sIconID = oIcon.getId();
+				this.storeColumnName(sIconID);
 				if (!this.oFilterPopover) {
 					Fragment.load({
 						id: Constants.ids.PRODUCTS_FILTER_POPOVER,
@@ -179,11 +189,9 @@ sap.ui.define([
 					}).then(function (oFilterPopover) {
 						this.oFilterPopover = oFilterPopover;
 						oView.addDependent(this.oFilterPopover);
-						this.setSearchfieldValues(sIconID);
 						this.oFilterPopover.openBy(oIcon);
 					}.bind(this));
 				} else {
-					this.setSearchfieldValues(sIconID);
 					this.oFilterPopover.openBy(oIcon);
 				}
 			},
@@ -217,33 +225,34 @@ sap.ui.define([
 				oTable.getBinding("items").filter(aListFilters);
 			},
 			
-			setSearchfieldValues: function (sIconID) {
+			storeColumnName: function (sIconID) {
+				this.loadSearchfieldValues();
 				const sID = sIconID.split("--")[1];
 				const oSearchfieldValuesModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
-				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
-				const aProductsData = oProductsModel.getProperty("/value");
+				oSearchfieldValuesModel.setProperty("/column", sID);
+				const aSearchfieldData = oSearchfieldValuesModel.getProperty("/");
 				const aValues = [];
 				
-				for (let i=0; i < aProductsData.length; i++) {
+				for (let i=0; i < aSearchfieldData.length; i++) {
 
-					const oDuplicateValue = aValues.find(oValue => oValue.description === aProductsData[i][sID]);
-					if (!oDuplicateValue) aValues.push({"description": aProductsData[i][sID]});
+					const oDuplicateValue = aValues.find(oValue => oValue[sID] === aSearchfieldData[i][sID]);
+					if (!oDuplicateValue) aValues.push(aSearchfieldData[i]);
 					
 				}
 				oSearchfieldValuesModel.setProperty("/", aValues);
 				oSearchfieldValuesModel.setProperty("/column", sID);
+				oSearchfieldValuesModel.refresh(true);
 			},
 
-			clearProductListFilters: function (oEvent) {
-				/*
-				BusyIndicator.show(0);
+			clearProductListFilters: function () {
 				const oTable = this.byId("idProductsTable");
-				let aListFilters = oTable.getBinding("items").aFilters;
-				aListFilters = null;
-				const aProductsTempModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
-				aProductsTempModel.refresh(true);
-				BusyIndicator.hide();
-				*/
+				const oTableBinding = oTable.getBinding("items");
+				let aListFilters = oTableBinding.aFilters;
+				//aListFilters = [];
+				oTableBinding.filter([]);
+				oTable.oPropagatedProperties.oModels.productsTemp.refresh(true);
+				//const oProductsTempModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
+				//oProductsTempModel.refresh(true);
 			},
 
 			clearProductListFilterInput: function () {
