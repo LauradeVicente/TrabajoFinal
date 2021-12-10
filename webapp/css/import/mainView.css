@@ -1,0 +1,9 @@
+.mainViewStyles .mainPage{
+    background-image: url("/webapp/images/clouds.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mainViewStyles .tileStyles {
+    background-color:rgb(240, 201, 156);
+}

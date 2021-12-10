@@ -12,6 +12,10 @@ sap.ui.define([
 			oVizFrame : null,
 
 			onInit: function () {
+				this.setVizProperties();
+			},
+
+			setVizProperties: function () {
 				const oVizFrame  = this.oVizFrame = this.getView().byId("idVizFrame");
             	oVizFrame.setVizProperties({
                 	plotArea: {
@@ -21,18 +25,18 @@ sap.ui.define([
                 	},
                	 	valueAxis: {
                     	title: {
-                        	visible: false
+                        	visible: true
                     	}
                 	},
                 	categoryAxis: {
                     	title: {
-                        	visible: false
+                        	visible: true
                     	}
                 	}
             	});
 			},
 
-			navToHome: function () {
+			navToProductList: function () {
 				const oRouter = this.getRouter();
 				oRouter.navTo("ProductList");
 			},

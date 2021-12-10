@@ -77,9 +77,9 @@
       },
       "routes": [
         {
-          "name": "Home",
-          "pattern": "Home",
-          "target": ["Home"]
+          "name": "Main",
+          "pattern": "Main",
+          "target": ["Main"]
         },
         {
           "name": "ProductList",
@@ -93,11 +93,11 @@
         }
       ],
       "targets": {
-        "Home": {
+        "Main": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewName": "Home",
+          "viewName": "Main",
           "viewPath": "restaurant.finalproject.view"
         },
         "ProductList": {

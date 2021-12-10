@@ -8,7 +8,7 @@
             <SearchField id="filterSearchfield" 
                         enableSuggestions="true" 
                         suggest="onSearchfieldSuggest" 
-                        suggestionItems="{searchfieldValuesModel>/}"
+                        suggestionItems="{searchfieldValuesModel>/products}"
                         search="onSearchfieldFilter">   
                 <SuggestionItem text="{path: 'searchfieldValuesModel>', 
                                 formatter: 'restaurant.finalproject.util.Formatter.getSearchfieldValue'}"/>  

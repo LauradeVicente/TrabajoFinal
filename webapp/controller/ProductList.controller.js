@@ -34,7 +34,7 @@ sap.ui.define([
 				const oModelProductsTemp = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
 				const aProductsData = oModelProductsTemp.getProperty("/value");
 				const oSearchfieldModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
-				oSearchfieldModel.setProperty("/", aProductsData);
+				oSearchfieldModel.setProperty("/products", jQuery.extend(true, [], aProductsData));
 			},
 
 			//FILTRO POR NOMBRE
@@ -104,19 +104,30 @@ sap.ui.define([
 			},
 
 			addProduct: function () {
-				const oDialogData = this.getView().getModel(Constants.model.PRODUCT_DIALOG).getProperty("/");
-				const oVendorDialogData = this.getView().getModel(Constants.model.VENDOR_DIALOG).getProperty("/");
-			
-				if (!Validator.checkAddProducts(oDialogData, oVendorDialogData, this.getView())) return;
-				BusyIndicator.show(0);
-				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);				
+				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
+				const aDialogData = oDialogModel.getProperty("/");
+				const oVendorDialogModel = this.getView().getModel(Constants.model.VENDOR_DIALOG);
+				const aVendorDialogData = oVendorDialogModel.getProperty("/");
+				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);		
 				const oProductsTempModel = this.getView().getModel(Constants.model.PRODUCTS_TEMP);
 				const aProductsTempData = oProductsTempModel.getProperty("/value");
 				const oVendorsModel = this.getOwnerComponent().getModel(Constants.model.VENDORS);
 				const aVendorsData = oVendorsModel.getProperty("/value");
 
-				aProductsTempData.push(oDialogData);
-				aVendorsData.push(oVendorDialogData);
+				let aVendorIDS = aVendorsData.map(oVendor => parseInt(oVendor.id));
+				let iVendorID = Math.max(...aVendorIDS) + 1;
+				oVendorDialogModel.setProperty("/id", iVendorID.toString());
+				oVendorDialogModel.setProperty("/product", aDialogData.name);
+
+				let aProductIDS = aProductsTempData.map(oProduct => parseInt(oProduct.ProductID));
+				let iProductID = Math.max(...aProductIDS) + 1;
+				oDialogModel.setProperty("/ProductID", iProductID.toString());
+			
+				if (!Validator.checkAddProducts(aDialogData, aVendorDialogData, this.getView())) return;
+				BusyIndicator.show(0);		
+
+				aProductsTempData.push(aDialogData);
+				aVendorsData.push(aVendorDialogData);
 
 				oProductsModel.setProperty("/value", aProductsTempData);
 				oProductsTempModel.setProperty("/value", aProductsTempData);
@@ -199,7 +210,19 @@ sap.ui.define([
 			onSearchfieldSuggest: function (oEvent) {
 				const oTable = this.byId("idProductsTable");
 				const aListFilters = oTable.getBinding("items").aFilters;
-				oEvent.getSource().getBinding("suggestionItems").filter(aListFilters);
+				//oEvent.getSource().getBinding("suggestionItems").filter(aListFilters)
+				const oSearchfieldValuesModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
+				let aProducts = oSearchfieldValuesModel.getProperty("/products");
+				let sID = oSearchfieldValuesModel.getProperty("/column");
+				for (let i=0; i<aListFilters.length; i++) {
+					aProducts = aProducts.filter(oProduct => oProduct[aListFilters[i].sPath].includes(aListFilters[i].oValue1))
+				}
+				const aValues = [];
+				for (let i=0; i < aProducts.length; i++) {
+					const oDuplicateValue = aValues.find(oValue => oValue[sID] === aProducts[i][sID]);
+					if (!oDuplicateValue) aValues.push(aProducts[i]);
+				}
+				oSearchfieldValuesModel.setProperty("/products", aValues);
 				oEvent.getSource().suggest();
 			},
 
@@ -229,17 +252,6 @@ sap.ui.define([
 				this.loadSearchfieldValues();
 				const sID = sIconID.split("--")[1];
 				const oSearchfieldValuesModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
-				oSearchfieldValuesModel.setProperty("/column", sID);
-				const aSearchfieldData = oSearchfieldValuesModel.getProperty("/");
-				const aValues = [];
-				
-				for (let i=0; i < aSearchfieldData.length; i++) {
-
-					const oDuplicateValue = aValues.find(oValue => oValue[sID] === aSearchfieldData[i][sID]);
-					if (!oDuplicateValue) aValues.push(aSearchfieldData[i]);
-					
-				}
-				oSearchfieldValuesModel.setProperty("/", aValues);
 				oSearchfieldValuesModel.setProperty("/column", sID);
 				oSearchfieldValuesModel.refresh(true);
 			},

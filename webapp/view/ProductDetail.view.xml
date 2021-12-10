@@ -10,14 +10,15 @@
     xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
     xmlns:viz.data="sap.viz.ui5.data"
     displayBlock="true">
-		<App>
+		<App class="detailViewStyles">
 			<Page id="detailView" title="{i18n>title}">
 				<content>
 				<core:Icon src="sap-icon://home" 
-						press="navToHome" 
+						press="navToProductList" 
 						tooltip="{i18n>homeIconTooltip}" 
 						alt="{i18n>homeIconTooltip}" 
-						size="2rem"/>
+						size="2rem"
+						class="homeIcon"/>
 					<ObjectHeader
 						title="{productDetail>/name}"
 						icon="{productDetail>/image}" 

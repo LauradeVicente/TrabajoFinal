@@ -18,34 +18,34 @@ sap.ui.define([
 				this.initRouter();
 			},
 
+			//INICIALIZAR EL ROUTER
 			initRouter: function () {
 				const oRouter = this.getRouter();
 				if (oRouter._bIsInitialized) {
-					oRouter.navTo("ProductList");
+					oRouter.navTo("Main");
 				} else {
 					oRouter.initialize();
 				}
 			},
-			
+
+			//INICIALIZAR MODELOS		
 			initModels: function () {
 				this.getOwnerComponent().setModel(new JSONModel(), Constants.model.PRODUCTS_TEMP);
 				this.getOwnerComponent().setModel(new JSONModel(), Constants.model.PRODUCTS_TYPES);
-				this.getOwnerComponent().setModel(new JSONModel(), Constants.model.USERS);
 				this.getOwnerComponent().setModel(new JSONModel(), Constants.model.PRODUCTS);
 				this.getOwnerComponent().setModel(new JSONModel(), Constants.model.VENDORS);
 				this.getOwnerComponent().setModel(new JSONModel(), Constants.model.SETTINGS);
 			},
 
+			//CARGAR DATOS EN LOS MODELOS
 			loadModels: async function () {
 				await this.loadProductsModel();
 				await this.loadProductsTempModel();
 				await this.loadProductTypesModel();
-				await this.loadUsersModel();
 				await this.loadVendorsModel();
 				await this.loadSettingsModel();
 			},
 
-			
 			loadProductsModel: async function () {
 				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);
 				await oProductsModel.loadData("json/Products.json");
@@ -61,11 +61,6 @@ sap.ui.define([
 			loadProductTypesModel: async function () {
 				const oProductTypesModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TYPES);
 				await oProductTypesModel.loadData("json/ProductTypes.json");
-			},
-
-			loadUsersModel: async function () {
-				const oStoragesModel = this.getOwnerComponent().getModel(Constants.model.USERS);
-				await oStoragesModel.loadData("json/Users.json");
 			},
 
 			loadVendorsModel: async function () {
