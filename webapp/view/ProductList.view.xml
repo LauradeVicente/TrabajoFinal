@@ -45,7 +45,7 @@
 									<Text text="{i18n>productName}"/>
 								</layout:HorizontalLayout>
 							</Column>
-							<Column>
+							<Column minScreenWidth="Desktop">
 								<layout:HorizontalLayout>
 									<core:Icon id="quantity" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productQuantity}"/>
@@ -57,13 +57,13 @@
 									<Text text="{i18n>productSupplier}"/>
 								</layout:HorizontalLayout>
 							</Column>
-							<Column>
+							<Column minScreenWidth="Tablet">
 								<layout:HorizontalLayout>
 									<core:Icon id="price_kg" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productPriceKg}"/>
 								</layout:HorizontalLayout>
 							</Column>
-							<Column>
+							<Column minScreenWidth="Desktop">
 								<layout:HorizontalLayout>
 									<core:Icon id="caducity" src="sap-icon://filter" press="openProductsFilters"/>
 									<Text text="{i18n>productCaducity}"/>

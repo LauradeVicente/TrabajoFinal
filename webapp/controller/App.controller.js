@@ -4,7 +4,6 @@ sap.ui.define([
 	"restaurant/finalproject/util/Constants"
 ],
 	
-
 	function (JSONModel, Router, Constants) {
 		"use strict";
 
@@ -18,7 +17,7 @@ sap.ui.define([
 				this.initRouter();
 			},
 
-			//INICIALIZAR EL ROUTER
+			//INICIALIZAR EL ROUTER Y NAVEGAR A MAIN
 			initRouter: function () {
 				const oRouter = this.getRouter();
 				if (oRouter._bIsInitialized) {
