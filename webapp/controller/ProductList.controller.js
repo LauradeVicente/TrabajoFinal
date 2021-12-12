@@ -210,7 +210,6 @@ sap.ui.define([
 			onSearchfieldSuggest: function (oEvent) {
 				const oTable = this.byId("idProductsTable");
 				const aListFilters = oTable.getBinding("items").aFilters;
-				//oEvent.getSource().getBinding("suggestionItems").filter(aListFilters)
 				const oSearchfieldValuesModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
 				let aProducts = oSearchfieldValuesModel.getProperty("/products");
 				let sID = oSearchfieldValuesModel.getProperty("/column");

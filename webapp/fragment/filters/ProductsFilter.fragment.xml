@@ -4,7 +4,6 @@
     xmlns:core="sap.ui.core">
     <Popover placement="Bottom" showHeader="false" beforeClose="clearProductListFilterInput">
         <HBox class="alignCenter">
-            <core:Icon src="sap-icon://sort"/>  
             <SearchField id="filterSearchfield" 
                         enableSuggestions="true" 
                         suggest="onSearchfieldSuggest" 
@@ -16,3 +15,7 @@
         </HBox>
     </Popover>
 </core:FragmentDefinition>
+
+
+
+
