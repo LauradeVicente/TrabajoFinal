@@ -49,10 +49,6 @@ function (ValueState, Constants) {
                 bError = false;
                 oView.byId(Constants.ids.VENDOR_CITY).setValueState(ValueState.Error);
             }
-            if (!oVendorData.country) {
-                bError = false;
-                oView.byId(Constants.ids.VENDOR_COUNTRY).setValueState(ValueState.Error);
-            }
             if (!oVendorData.street) {
                 bError = false;
                 oView.byId(Constants.ids.VENDOR_STREET).setValueState(ValueState.Error);
@@ -65,9 +61,12 @@ function (ValueState, Constants) {
                 bError = false;
                 oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Error);
             }
-            if (!oVendorData.zipCode) {
-                bError = false;
-                oView.byId(Constants.ids.VENDOR_ZIPCODE).setValueState(ValueState.Error);
+            if (oVendorData.email) {
+                let mailRegex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                if (!oVendorData.email.match(mailRegex)) {
+                    bError = false;
+                    oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Error);
+                }
             }
             return bError;
         }

@@ -106,6 +106,11 @@ sap.ui.define([
 			addProduct: function () {
 				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
 				const aDialogData = oDialogModel.getProperty("/");
+				let sQuantity = oDialogModel.getProperty("/quantity") + "kg";
+				oDialogModel.setProperty("/quantity", sQuantity);
+				let sPrice = oDialogModel.getProperty("/price_kg") + "€/kg";
+				oDialogModel.setProperty("/price_kg", sPrice);
+				
 				const oVendorDialogModel = this.getView().getModel(Constants.model.VENDOR_DIALOG);
 				const aVendorDialogData = oVendorDialogModel.getProperty("/");
 				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);		
@@ -124,7 +129,6 @@ sap.ui.define([
 				oDialogModel.setProperty("/ProductID", iProductID.toString());
 			
 				if (!Validator.checkAddProducts(aDialogData, aVendorDialogData, this.getView())) return;
-				BusyIndicator.show(0);		
 
 				aProductsTempData.push(aDialogData);
 				aVendorsData.push(aVendorDialogData);
@@ -136,7 +140,6 @@ sap.ui.define([
 				oProductsTempModel.refresh(true);
 				oVendorsModel.refresh(true);
 				this.closeAddProductsDialog();
-				BusyIndicator.hide();
 			},
 
 			onInputSuggest: function (oEvent) {
@@ -176,7 +179,8 @@ sap.ui.define([
 			//ELIMINAR UN PRODUCTO
 			onDeleteProduct: function (oEvent) {
 				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
-				let sProductPath = oEvent.getParameter("listItem").getBindingContext(Constants.model.PRODUCTS_TEMP).getPath();
+				let oListItem = oEvent.getParameter("listItem");
+				let sProductPath = oListItem.getBindingContext(Constants.model.PRODUCTS_TEMP).getPath();
 				oProductsModel.setProperty(sProductPath, undefined);
 				const aProducts = oProductsModel.getProperty("/value");
 				const iProductPath = aProducts.indexOf(undefined);

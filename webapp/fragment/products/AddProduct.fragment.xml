@@ -1,7 +1,8 @@
 <core:FragmentDefinition 
     xmlns="sap.m" 
     controllerName="restaurant.finalproject.controller.ProductList"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified">
     <Dialog title="{i18n>addProductsDialogTitle}" class="sapUiContentPadding">
         <content>
             <HBox>
@@ -12,7 +13,7 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productName}" labelFor="product_name"/>
                                 <Input id="product_name" 
                                     placeholder="{i18n>productName}"
@@ -20,7 +21,7 @@
                                     value="{dialog>/name}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productSupplier}" labelFor="product_supplier"/>
                                 <Input id="product_supplier" 
                                     placeholder="{i18n>productSupplier}" 
@@ -28,7 +29,7 @@
                                     value="{dialog>/supplier}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productType}" labelFor="product_type"/>
                                 <Input id="product_type" 
                                     placeholder="{i18n>productType}"
@@ -48,7 +49,7 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productPriceKg}" labelFor="product_price"/>
                                 <Input id="product_price" 
                                     type="Number" 
@@ -57,7 +58,7 @@
                                     value="{dialog>/price_kg}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productQuantity}" labelFor="product_quant"/>
                                 <Input id="product_quant" 
                                     type="Number" 
@@ -71,7 +72,7 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productImageUrl}" labelFor="product_image"/>
                                 <Input id="product_image" 
                                     type="Url" 
@@ -80,12 +81,28 @@
                                     value="{dialog>/image}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>productCaducity}" labelFor="product_cad"/>
                                 <DatePicker id="product_cad" 
                                             value="{dialog>/caducity}" 
                                             displayFormat="MM/dd/yyyy" 
                                             required="true"/>
+                            </VBox>
+                        </HBox>
+                        <HBox fitContainer="true" 
+                            justifyContent="Center" 
+                            alignItems="Center" 
+                            alignContent="Center">
+                            <VBox alignContent="Center">
+                                <Label text="{i18n>fileUploaderLabel}" labelFor="fileUploaderId"/>
+                                <u:FileUploader id="fileUploaderId" 
+                                                sameFilenameAllowed="true" 
+                                                fileType="XLSX,xlsx"
+									            icon="sap-icon://upload"
+                                                iconFirst="false" 
+                                                change="onUpload"
+                                                buttonText="{i18n>fileUploaderText}"
+                                                tooltip="{i18n>fileUploaderTooltip}"/>
                             </VBox>
                         </HBox>
                     </IconTabFilter>
@@ -94,7 +111,7 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorName}" labelFor="vendor_name"/>
                                 <Input id="vendor_name" 
                                     placeholder="{i18n>vendorName}" 
@@ -102,7 +119,7 @@
                                     value="{vendorDialog>/name}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorCity}" labelFor="vendor_city"/>
                                 <Input id="vendor_city" 
                                     placeholder="{i18n>vendorCity}" 
@@ -110,20 +127,19 @@
                                     value="{vendorDialog>/city}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorCountry}" labelFor="vendor_country"/>
                                 <Input id="vendor_country" 
                                     placeholder="{i18n>vendorCountry}"
                                     liveChange="onInputChange"
-                                    value="{vendorDialog>/country}"
-                                    required="true"/>
+                                    value="{vendorDialog>/country}"/>
                             </VBox>
                         </HBox>
                         <HBox fitContainer="true" 
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorStreet}" labelFor="vendor_street"/>
                                 <Input id="vendor_street" 
                                     placeholder="{i18n>vendorStreet}"
@@ -131,7 +147,7 @@
                                     value="{vendorDialog>/street}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorTelephone}" labelFor="vendor_telephone"/>
                                 <Input id="vendor_telephone" 
                                     type="Tel" 
@@ -144,7 +160,7 @@
                             justifyContent="Center" 
                             alignItems="Center" 
                             alignContent="Center">
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorMobile}" labelFor="vendor_mobile"/>
                                 <Input id="vendor_mobile" 
                                     type="Tel" 
@@ -154,7 +170,7 @@
                                     required="true"
                                     maxLength="9"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorEmail}" labelFor="vendor_email"/>
                                 <Input id="vendor_email" 
                                     type="Email"
@@ -163,15 +179,14 @@
                                     placeholder="{i18n>vendorEmail}" 
                                     required="true"/>
                             </VBox>
-                            <VBox alignContent="Center" alignItems="Left">
+                            <VBox alignContent="Center">
                                 <Label text="{i18n>vendorZipCode}" labelFor="vendor_zipCode"/>
                                 <Input id="vendor_zipCode"  
                                     type="Tel"
                                     maxLength="5"
                                     liveChange="onInputChange"
                                     value="{vendorDialog>/zipCode}" 
-                                    placeholder="{i18n>vendorZipCode}" 
-                                    required="true"/>
+                                    placeholder="{i18n>vendorZipCode}" />
                             </VBox>
                         </HBox>
                     </IconTabFilter>

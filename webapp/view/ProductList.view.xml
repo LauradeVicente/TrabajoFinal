@@ -43,7 +43,8 @@
 								<layout:HorizontalLayout>
 									<core:Icon id="name" 
 											src="sap-icon://filter" 
-											press="openProductsFilters"/>
+											press="openProductsFilters"
+											tooltip="{i18n>filterIconTooltip}"/>
 									<Text text="{i18n>productName}"/>
 								</layout:HorizontalLayout>
 							</Column>
@@ -51,7 +52,8 @@
 								<layout:HorizontalLayout>
 									<core:Icon id="quantity" 
 											src="sap-icon://filter" 
-											press="openProductsFilters"/>
+											press="openProductsFilters"
+											tooltip="{i18n>filterIconTooltip}"/>
 									<Text text="{i18n>productQuantity}"/>
 								</layout:HorizontalLayout>
 							</Column>
@@ -59,7 +61,8 @@
 								<layout:HorizontalLayout>
 									<core:Icon id="supplier" 
 											src="sap-icon://filter" 
-											press="openProductsFilters"/>
+											press="openProductsFilters"
+											tooltip="{i18n>filterIconTooltip}"/>
 									<Text text="{i18n>productSupplier}"/>
 								</layout:HorizontalLayout>
 							</Column>
@@ -67,7 +70,8 @@
 								<layout:HorizontalLayout>
 									<core:Icon id="price_kg" 
 											src="sap-icon://filter" 
-											press="openProductsFilters"/>
+											press="openProductsFilters"
+											tooltip="{i18n>filterIconTooltip}"/>
 									<Text text="{i18n>productPriceKg}"/>
 								</layout:HorizontalLayout>
 							</Column>
@@ -75,7 +79,8 @@
 								<layout:HorizontalLayout>
 									<core:Icon id="caducity" 
 											src="sap-icon://filter" 
-											press="openProductsFilters"/>
+											press="openProductsFilters"
+											tooltip="{i18n>filterIconTooltip}"/>
 									<Text text="{i18n>productCaducity}"/>
 								</layout:HorizontalLayout>
 							</Column>
@@ -83,7 +88,8 @@
 								<layout:HorizontalLayout>
 									<core:Icon id="type" 
 											src="sap-icon://filter" 
-											press="openProductsFilters"/>
+											press="openProductsFilters"
+											tooltip="{i18n>filterIconTooltip}"/>
 									<Text text="{i18n>productType}"/>
 								</layout:HorizontalLayout>
 							</Column>

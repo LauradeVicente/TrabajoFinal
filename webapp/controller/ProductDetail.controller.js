@@ -18,6 +18,9 @@ sap.ui.define([
 			setVizProperties: function () {
 				const oVizFrame  = this.oVizFrame = this.getView().byId("idVizFrame");
             	oVizFrame.setVizProperties({
+					title: {
+						text: "Ventas por meses"
+					},
                 	plotArea: {
                     	dataLabel: {
                         	visible: true
