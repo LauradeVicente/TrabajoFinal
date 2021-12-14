@@ -36,6 +36,14 @@ sap.ui.define([
 				const oSearchfieldModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
 				oSearchfieldModel.setProperty("/products", jQuery.extend(true, [], aProductsData));
 			},
+			//a = 1
+			//b = a
+			//a = 2
+			//console.log(b) returns 2
+			//a = 1
+			//b = jQuery.extend(true, [], a)
+			//a = 2
+			//console.log(b) returns 1
 
 			//FILTRO POR NOMBRE
 			onFilterProductName: function (oEvent) {
@@ -133,9 +141,9 @@ sap.ui.define([
 				oProductsModel.setProperty("/value", aProductsTempData);
 				oProductsTempModel.setProperty("/value", aProductsTempData);
 				oVendorsModel.setProperty("/value", aVendorsData);
-				oProductsModel.refresh(true);
+				/*oProductsModel.refresh(true);
 				oProductsTempModel.refresh(true);
-				oVendorsModel.refresh(true);
+				oVendorsModel.refresh(true);*/
 				this.closeAddProductsDialog();
 			},
 

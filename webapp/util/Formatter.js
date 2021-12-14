@@ -1,8 +1,9 @@
 sap.ui.define([
-    "restaurant/finalproject/util/Constants"
+    "restaurant/finalproject/util/Constants",
+    "restaurant/finalproject/util/Formatter"
 ],
 
-    function (Constants) {
+    function (Constants, Formatter) {
         "use strict";
 
         return {
@@ -30,6 +31,7 @@ sap.ui.define([
             getSearchfieldValue: function (oProduct) {
                 const oSearchfieldValuesModel = appScope.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
                 const sColumnID = oSearchfieldValuesModel.getProperty("/column");
+                if (sColumnID === "caducity") return restaurant.finalproject.util.Formatter.setDate(oProduct[sColumnID]);
                 return oProduct[sColumnID];
             }
 
