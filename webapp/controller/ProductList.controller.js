@@ -73,7 +73,6 @@ sap.ui.define([
 				let oView = this.getView();
 				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
 				const oVendorDialogModel = this.getView().getModel(Constants.model.VENDOR_DIALOG);
-				const settingsModel = this.getOwnerComponent().getModel("settings");
 
 				if (!this._oDialog) {
 					Fragment.load({
@@ -85,13 +84,11 @@ sap.ui.define([
 						oView.addDependent(this._oDialog);
 						oDialogModel.setData({});
 						oVendorDialogModel.setData({});
-						settingsModel.setProperty("/addEnable", false);
 						this._oDialog.open();
 					}.bind(this));
 				} else {
 					oDialogModel.setData({});
 					oVendorDialogModel.setData({});
-					settingsModel.setProperty("/addEnable", false);
 					this._oDialog.open();
 				}
 			},
@@ -262,12 +259,8 @@ sap.ui.define([
 			clearProductListFilters: function () {
 				const oTable = this.byId("idProductsTable");
 				const oTableBinding = oTable.getBinding("items");
-				let aListFilters = oTableBinding.aFilters;
-				//aListFilters = [];
 				oTableBinding.filter([]);
 				oTable.oPropagatedProperties.oModels.productsTemp.refresh(true);
-				//const oProductsTempModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS_TEMP);
-				//oProductsTempModel.refresh(true);
 			},
 
 			clearProductListFilterInput: function () {

@@ -14,12 +14,14 @@
 				<tnt:ToolHeader>
 					<SearchField placeholder="{i18n>productNameFilter}"
 								width="30%"
-								search="onFilterProductName"/>
+								search="onFilterProductName"
+								class="sapUiSmallMarginEnd sapUiVisibleOnlyOnDesktop"/>
 					<MultiComboBox id="productsMCB"
 								placeholder="{i18n>productTypeFilter}"
 								width="30%"
 								selectionChange="onFilterProductType"
-								items="{path: 'productTypes>/'}">
+								items="{path: 'productTypes>/'}"
+								class="sapUiSmallMarginEnd sapUiHideOnPhone">
 									<core:Item key="{productTypes>id}" text="{productTypes>type}"/>
 					</MultiComboBox>
 					<Button text="{i18n>addProductButton}" 
