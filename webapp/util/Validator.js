@@ -53,19 +53,40 @@ function (ValueState, Constants) {
                 bError = false;
                 oView.byId(Constants.ids.VENDOR_STREET).setValueState(ValueState.Error);
             }
+            if (oVendorData.telephone) {
+                let sNumberRegex = '^[0-9]*$';
+                if (!oVendorData.telephone.match(sNumberRegex)) {
+                    bError = false;
+                    oView.byId(Constants.ids.VENDOR_TELEPHONE).setValueState(ValueState.Error);
+                }
+            }
             if (!oVendorData.mobile) {
                 bError = false;
                 oView.byId(Constants.ids.VENDOR_MOBILE).setValueState(ValueState.Error);
+            }
+            if (oVendorData.mobile) {
+                let sMobileRegex = '^[0-9]*$';
+                if (!oVendorData.mobile.match(sMobileRegex)) {
+                    bError = false;
+                    oView.byId(Constants.ids.VENDOR_MOBILE).setValueState(ValueState.Error);
+                }
             }
             if (!oVendorData.email) {
                 bError = false;
                 oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Error);
             }
             if (oVendorData.email) {
-                let mailRegex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
-                if (!oVendorData.email.match(mailRegex)) {
+                let sMailRegex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                if (!oVendorData.email.match(sMailRegex)) {
                     bError = false;
                     oView.byId(Constants.ids.VENDOR_EMAIL).setValueState(ValueState.Error);
+                }
+            }
+            if (oVendorData.zipCode) {
+                let sNumberRegex = '^[0-9]*$';
+                if (!oVendorData.zipCode.match(sNumberRegex)) {
+                    bError = false;
+                    oView.byId(Constants.ids.VENDOR_ZIPCODE).setValueState(ValueState.Error);
                 }
             }
             return bError;

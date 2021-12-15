@@ -122,7 +122,7 @@ sap.ui.define([
 				const oVendorsModel = this.getOwnerComponent().getModel(Constants.model.VENDORS);
 				const aVendorsData = oVendorsModel.getProperty("/value");
 
-				this.setVendorID(aVendorsData, oVendorDialogModel);
+				this.setVendorID(aDialogData, aVendorsData, oVendorDialogModel);
 				this.setProductID(aProductsTempData, oDialogModel);
 				this.setPriceQuantitySuffix(oDialogModel);
 				this.setSalesData(oDialogModel);
