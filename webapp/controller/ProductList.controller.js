@@ -115,12 +115,12 @@ sap.ui.define([
 				const oVendorsModel = this.getOwnerComponent().getModel(Constants.model.VENDORS);
 				const aVendorsData = oVendorsModel.getProperty("/value");
 
+				if (!Validator.checkAddProducts(aDialogData, aVendorDialogData, this.getView())) return;
+
 				this.setVendorID(aDialogData, aVendorsData, oVendorDialogModel);
 				this.setProductID(aProductsTempData, oDialogModel);
 				this.setPriceQuantitySuffix(oDialogModel);
 				this.setSalesData(oDialogModel);
-			
-				if (!Validator.checkAddProducts(aDialogData, aVendorDialogData, this.getView())) return;
 
 				aProductsTempData.push(aDialogData);
 				aVendorsData.push(aVendorDialogData);
