@@ -89,22 +89,6 @@
                                             required="true"/>
                             </VBox>
                         </HBox>
-                        <HBox fitContainer="true" 
-                            justifyContent="Center" 
-                            alignItems="Center" 
-                            alignContent="Center">
-                            <VBox alignContent="Center">
-                                <Label text="{i18n>fileUploaderLabel}" labelFor="fileUploaderId"/>
-                                <u:FileUploader id="fileUploaderId" 
-                                                sameFilenameAllowed="true" 
-                                                fileType="XLSX,xlsx"
-									            icon="sap-icon://upload"
-                                                iconFirst="false" 
-                                                change="onUpload"
-                                                buttonText="{i18n>fileUploaderText}"
-                                                tooltip="{i18n>fileUploaderTooltip}"/>
-                            </VBox>
-                        </HBox>
                     </IconTabFilter>
                     <IconTabFilter key="supplier_info" text="{i18n>iconTabFilterAddSupplier}">
                         <HBox fitContainer="true" 

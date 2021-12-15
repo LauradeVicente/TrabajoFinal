@@ -111,27 +111,21 @@ sap.ui.define([
 			addProduct: function () {
 				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
 				const aDialogData = oDialogModel.getProperty("/");
-				let sQuantity = oDialogModel.getProperty("/quantity") + "kg";
-				oDialogModel.setProperty("/quantity", sQuantity);
-				let sPrice = oDialogModel.getProperty("/price_kg") + "€/kg";
-				oDialogModel.setProperty("/price_kg", sPrice);
 				
 				const oVendorDialogModel = this.getView().getModel(Constants.model.VENDOR_DIALOG);
 				const aVendorDialogData = oVendorDialogModel.getProperty("/");
+
 				const oProductsModel = this.getOwnerComponent().getModel(Constants.model.PRODUCTS);		
 				const oProductsTempModel = this.getView().getModel(Constants.model.PRODUCTS_TEMP);
 				const aProductsTempData = oProductsTempModel.getProperty("/value");
+
 				const oVendorsModel = this.getOwnerComponent().getModel(Constants.model.VENDORS);
 				const aVendorsData = oVendorsModel.getProperty("/value");
 
-				let aVendorIDS = aVendorsData.map(oVendor => parseInt(oVendor.id));
-				let iVendorID = Math.max(...aVendorIDS) + 1;
-				oVendorDialogModel.setProperty("/id", iVendorID.toString());
-				oVendorDialogModel.setProperty("/product", aDialogData.name);
-
-				let aProductIDS = aProductsTempData.map(oProduct => parseInt(oProduct.ProductID));
-				let iProductID = Math.max(...aProductIDS) + 1;
-				oDialogModel.setProperty("/ProductID", iProductID.toString());
+				this.setVendorID(aVendorsData, oVendorDialogModel);
+				this.setProductID(aProductsTempData, oDialogModel);
+				this.setPriceQuantitySuffix(oDialogModel);
+				this.setSalesData(oDialogModel);
 			
 				if (!Validator.checkAddProducts(aDialogData, aVendorDialogData, this.getView())) return;
 
@@ -141,10 +135,35 @@ sap.ui.define([
 				oProductsModel.setProperty("/value", aProductsTempData);
 				oProductsTempModel.setProperty("/value", aProductsTempData);
 				oVendorsModel.setProperty("/value", aVendorsData);
-				/*oProductsModel.refresh(true);
-				oProductsTempModel.refresh(true);
-				oVendorsModel.refresh(true);*/
+	
 				this.closeAddProductsDialog();
+			},
+
+			setVendorID: function (aDialogData, aVendorsData, oVendorDialogModel) {
+				let aVendorIDS = aVendorsData.map(oVendor => parseInt(oVendor.id));
+				let iVendorID = Math.max(...aVendorIDS) + 1;
+				oVendorDialogModel.setProperty("/id", iVendorID.toString());
+				oVendorDialogModel.setProperty("/product", aDialogData.name);
+			},
+
+			setProductID: function (aProductsTempData, oDialogModel) {
+				let aProductIDS = aProductsTempData.map(oProduct => parseInt(oProduct.ProductID));
+				let iProductID = Math.max(...aProductIDS) + 1;
+				oDialogModel.setProperty("/ProductID", iProductID.toString());
+			},
+
+			setPriceQuantitySuffix: function(oDialogModel) {
+				let sQuantity = oDialogModel.getProperty("/quantity") + "kg";
+				oDialogModel.setProperty("/quantity", sQuantity);
+				let sPrice = oDialogModel.getProperty("/price_kg") + "€/kg";
+				oDialogModel.setProperty("/price_kg", sPrice);
+			},
+
+			setSalesData: function (oDialogModel) {
+				const oProductsTempModel = this.getView().getModel(Constants.model.PRODUCTS_TEMP);
+				const aProductsTempData = oProductsTempModel.getProperty("/value");
+				const aSales = aProductsTempData[0].sales;
+				oDialogModel.setProperty("/sales", aSales);
 			},
 
 			onInputSuggest: function (oEvent) {

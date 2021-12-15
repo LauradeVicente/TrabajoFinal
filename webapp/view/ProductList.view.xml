@@ -39,7 +39,9 @@
 						   class="sapUiResponsiveContentPadding"
 						   mode="Delete"
 						   delete="onDeleteProduct"
-						   noDataText="{i18n>noDataText}">
+						   noDataText="{i18n>noDataText}"
+						   growing="true" 
+						   growingThreshold="10">
 						<columns>
 							<Column>
 								<layout:HorizontalLayout>
