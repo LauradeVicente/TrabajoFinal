@@ -44,7 +44,7 @@ sap.ui.define([
 				oRouter.navTo("ProductList");
 			},
 	
-        	onDataLabelChanged : function(oEvent){
+        	onDataLabelChanged: function(oEvent) {
 				const sState = oEvent.getParameter("state");
             	if (this.oVizFrame){
                 	this.oVizFrame.setVizProperties({
@@ -57,7 +57,7 @@ sap.ui.define([
             	}
         	},
 
-        	onAxisTitleChanged : function(oEvent){
+        	onAxisTitleChanged: function(oEvent) {
 				const sState = oEvent.getParameter("state");
             	if (this.oVizFrame){
                 	this.oVizFrame.setVizProperties({

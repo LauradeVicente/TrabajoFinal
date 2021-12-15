@@ -36,14 +36,6 @@ sap.ui.define([
 				const oSearchfieldModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
 				oSearchfieldModel.setProperty("/products", jQuery.extend(true, [], aProductsData));
 			},
-			//a = 1
-			//b = a
-			//a = 2
-			//console.log(b) returns 2
-			//a = 1
-			//b = jQuery.extend(true, [], a)
-			//a = 2
-			//console.log(b) returns 1
 
 			//FILTRO POR NOMBRE
 			onFilterProductName: function (oEvent) {
@@ -76,7 +68,7 @@ sap.ui.define([
 				this.getView().getModel(Constants.model.PRODUCTS_TEMP).setProperty("/value", aTempModelData);
 			},
 
-			//DIALOG DE AÑADIR PRODUCTO
+			//ABRIR FRAGMENTO ADDPRODUCT
 			handlePopoverAddProducts: function () {
 				let oView = this.getView();
 				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
@@ -108,6 +100,7 @@ sap.ui.define([
 				this._oDialog = null;
 			},
 
+			//AÑADIR PRODUCTO
 			addProduct: function () {
 				const oDialogModel = this.getView().getModel(Constants.model.PRODUCT_DIALOG);
 				const aDialogData = oDialogModel.getProperty("/");
@@ -166,6 +159,7 @@ sap.ui.define([
 				oDialogModel.setProperty("/sales", aSales);
 			},
 
+			//SUGGEST TYPE INPUT (ADDPRODUCT)
 			onInputSuggest: function (oEvent) {
 				let sTerm = oEvent.getParameter("suggestValue");
 				let aFilters = [];
@@ -175,6 +169,7 @@ sap.ui.define([
 				oEvent.getSource().getBinding("suggestionItems").filter(aFilters);
 			},
 
+			//LIVECHANGE DE INPUTS (ADDPRODUCT)
 			onInputChange: function (oEvent) {
 				const oInput = oEvent.getSource();
 				oInput.setValueState(ValueState.None); 
@@ -214,7 +209,7 @@ sap.ui.define([
 				oProductsModel.refresh(true);
 			},
 
-			//POPOVER DE FILTRAR
+			//ABRIR FRAGMENTO PRODUCTSFILTER
 			openProductsFilters: function (oEvent) {
 				const oIcon = oEvent.getSource();
 				let oView = this.getView();
@@ -235,6 +230,7 @@ sap.ui.define([
 				}
 			},
 
+			//SUGGEST SEARCHFIELD (PRODUCTSFILTER)
 			onSearchfieldSuggest: function (oEvent) {
 				const oTable = this.byId("idProductsTable");
 				const aListFilters = oTable.getBinding("items").aFilters;
@@ -253,12 +249,17 @@ sap.ui.define([
 				oEvent.getSource().suggest();
 			},
 
+			//SEARCH SEARCHFIELD (PRODUCTSFILTER)
 			onSearchfieldFilter: function (oEvent) {
-				const sQuery = oEvent.getParameter("query");
+				let sQuery = oEvent.getParameter("query");
 				const oSearchfieldValuesModel = this.getView().getModel(Constants.model.SEARCHFIELD_VALUES);
 				const sColumnID = oSearchfieldValuesModel.getProperty("/column");
 				const oTable = this.byId("idProductsTable");
 				const aListFilters = oTable.getBinding("items").aFilters;
+				if (sColumnID === "caducity") {
+					let aQuery = sQuery.split("/");
+					sQuery = aQuery[2] + "-" + aQuery[1] + "-" + aQuery[0];
+				}
 				const oFilter = new Filter({
 					path: sColumnID,
 					operator: FilterOperator.Contains,
@@ -275,6 +276,7 @@ sap.ui.define([
 				oTable.getBinding("items").filter(aListFilters);
 			},
 			
+			//ALMACENAR COLUMNA SELECCIONADA
 			storeColumnName: function (sIconID) {
 				this.loadSearchfieldValues();
 				const sID = sIconID.split("--")[1];
@@ -283,6 +285,7 @@ sap.ui.define([
 				oSearchfieldValuesModel.refresh(true);
 			},
 
+			//LIMPIAR FILTROS
 			clearProductListFilters: function () {
 				const oTable = this.byId("idProductsTable");
 				const oTableBinding = oTable.getBinding("items");
@@ -290,9 +293,10 @@ sap.ui.define([
 				oTable.oPropagatedProperties.oModels.productsTemp.refresh(true);
 			},
 
+			//VACIAR EL SEARCHFIELD (PRODUCTSFILTER)
 			clearProductListFilterInput: function () {
-				const oInput = Fragment.byId(Constants.ids.PRODUCTS_FILTER_POPOVER, "filterSearchfield");
-				oInput.setValue();
+				const oSearchfield = Fragment.byId(Constants.ids.PRODUCTS_FILTER_POPOVER, "filterSearchfield");
+				oSearchfield.setValue();
 			}
         });
 	});
